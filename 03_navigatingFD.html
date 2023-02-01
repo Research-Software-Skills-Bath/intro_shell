@@ -13428,18 +13428,6 @@ data/
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<div class="w3-panel w3-leftbar w3-border-blue w3-pale-blue w3-padding-small">
-    <h3 id="-Parameters-and-Arguments%20"><i class="fa fa-info-circle"></i> Parameters and Arguments
-</h3>
-    <p>According to Wikipedia, the terms argument and parameter mean slightly different things. In practice, however, most people use them interchangeably to refer to the input term(s) given to a command.</p>
-<p><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls</code> is the command, <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">-F</code> are the flags (also called options), and <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">IntroShell/data</code> is the argument.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <div class="w3-panel w3-leftbar w3-border-yellow w3-pale-yellow w3-padding-small">
     <h3 id="-Exploring-further%20"><i class="fa fa-pencil-square-o"></i> Exploring further
 </h3>
@@ -13546,7 +13534,7 @@ bash:<span class="w"> </span>cd:<span class="w"> </span>data:<span class="w"> </
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">..</code> is a special directory name meaning "the directory containing this one", or more succinctly, the parent of the current directory. Sure enough, if we run <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">pwd</code> after running <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">cd ..</code>, we're back in <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">/jupyter/jupyter-cor22/IntroShell/data</code>:</p>
+<p><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">..</code> is a special directory name meaning "the directory containing this one", or more succinctly, the parent of the current directory. Sure enough, if we run <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">pwd</code> after running <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">cd ..</code>, we're back in <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">/jupyter/jupyter-user/IntroShell/data</code>:</p>
 <div class="highlight"><pre><span></span>jupyter-user:~<span class="nv">$pwd</span>
 /jupyter/jupyter-cor22/IntroShell/data
 </pre></div>
@@ -13568,7 +13556,7 @@ bash:<span class="w"> </span>cd:<span class="w"> </span>data:<span class="w"> </
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">-a</code> stands for "show all"; it forces ls to show us file and directory names that begin with <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">.</code>, such as <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">..</code> (which, if we're in <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">/jupyter/jupyter-user/IntroShell/data</code>, refers to the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">/jupyter/jupyter-user/IntroShell/data</code> directory) As you can see, it also displays another special directory that's just called <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">.</code>.</p>
+<p><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">-a</code> stands for "show all"; it forces ls to show us file and directory names that begin with <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">.</code>, such as <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">..</code> (which, if we're in <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">/jupyter/jupyter-user/IntroShell/data</code>, refers to the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">/jupyter/jupyter-user/IntroShell</code> directory) As you can see, it also displays another special directory that's just called <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">.</code>.</p>
 
 </div>
 </div>
@@ -13581,6 +13569,15 @@ bash:<span class="w"> </span>cd:<span class="w"> </span>data:<span class="w"> </
 </h3>
     <p>WHere does the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">.</code> special directory refer to?</p>
 </div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">.</code>  means "the current working directory". It may seem redundant to have a name for it, but we'll see some uses for it soon.</p>
+<p>Note that in most command line tools, multiple flags can be combined with a single <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">-</code> and no spaces between the flags: <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls -F -a</code> is equivalent to <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls -Fa</code>.</p>
+
 </div>
 </div>
 </div>
@@ -13646,7 +13643,7 @@ jupyter-user:<span class="nv">$pwd</span>
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div class="w3-panel w3-leftbar w3-border-yellow w3-pale-yellow w3-padding-small">
-    <h3 id="-Absiolute-Paths%20"><i class="fa fa-pencil-square-o"></i> Absiolute Paths
+    <h3 id="-Absolute-Paths%20"><i class="fa fa-pencil-square-o"></i> Absolute Paths
 </h3>
     <p>Us <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">pwd</code> to find the <strong>absolute</strong> path of the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">IntroShell</code> directory, and then move to it.</p>
 <p><a href="">Solution</a></p>
