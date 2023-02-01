@@ -3,7 +3,7 @@
 <head><meta charset="utf-8" />
 <link rel="icon" type="image/png" href="css/favicon.png"/>
 
-<title>02_introducing_the_shell</title>
+<title>02_introducing_the_shell-soln</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -13093,192 +13093,22 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Introducing-the-Shell">Introducing the Shell<a class="anchor-link" href="#Introducing-the-Shell">&#182;</a></h1>
+<h1 id="Solutions">Solutions<a class="anchor-link" href="#Solutions">&#182;</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<div class="w3-panel w3-leftbar w3-border-green w3-pale-green w3-padding-small">
-    <h3 id="-Overview%3A%20"><i class="fa fa-file-o"></i> Overview:
+<div class="w3-panel w3-leftbar w3-border-blue w3-pale-blue w3-padding-small">
+    <h3 id="-ls-Reading-Comprehension%20"><i class="fa fa-eye"></i> <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls</code> Reading Comprehension
 </h3>
-    <ul>
-<li><strong>Teaching:</strong> 5 min</li>
-<li><strong>Exercises:</strong> 0 min</li>
-</ul>
-<p><strong>Questions</strong></p>
-<ul>
-<li>What is a command shell and why would I use one?</li>
-</ul>
-<p><strong>Objectives</strong></p>
-<ul>
-<li>Explain how the shell relates to the keyboard, the screen, the operating system, and users’ programs.</li>
-<li>Explain when and why command-line interfaces should be used instead of graphical interfaces.</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Background">Background<a class="anchor-link" href="#Background">&#182;</a></h2><p><img src="./images/02/git-cli-hero.png" alt="Create new notebook"></p>
-<p>Humans and computers commonly interact in many different ways, such as through a keyboard and mouse, touch screen interfaces, or using speech recognition systems. The most widely used way to interact with personal computers is called a graphical user interface (GUI). With a GUI, we give instructions by clicking a mouse and using menu-driven interactions.</p>
-<p>While the visual aid of a GUI makes it intuitive to learn, this way of delivering instructions to a computer scales very poorly. Imagine the following task: for a literature search, you have to copy the third line of one thousand text files in one thousand different directories and paste it into a single file. Using a GUI, you would not only be clicking at your desk for several hours, but you could potentially also commit an error in the process of completing this repetitive task. This is where we take advantage of the Unix shell. The Unix shell is both a command-line interface (CLI) and a scripting language, allowing such repetitive tasks to be done automatically and fast. With the proper commands, the shell can repeat tasks with or without some modification as many times as we want. Using the shell, the task in the literature example can be accomplished in seconds.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="The-Shell">The Shell<a class="anchor-link" href="#The-Shell">&#182;</a></h2><p>The shell is a program where users can type commands. With the shell, it’s possible to invoke complicated programs like climate modeling software or simple commands that create an empty directory with only one line of code. The most popular Unix shell is Bash (the Bourne Again SHell — so-called because it’s derived from a shell written by Stephen Bourne). Bash is the default shell on most modern implementations of Unix and in most packages that provide Unix-like tools for Windows.</p>
-<p>Using the shell will take some effort and some time to learn. While a GUI presents you with choices to select, CLI choices are not automatically presented to you, so you must learn a few commands like new vocabulary in a language you’re studying. However, unlike a spoken language, a small number of “words” (i.e. commands) gets you a long way, and we’ll cover those essential few today.</p>
-<p>The grammar of a shell allows you to combine existing tools into powerful pipelines and handle large volumes of data automatically. Sequences of commands can be written into a script, improving the reproducibility of workflows.</p>
-<p>In addition, the command line is often the easiest way to interact with remote machines and supercomputers. Familiarity with the shell is near essential to run a variety of specialized tools and resources including high-performance computing systems. As clusters and cloud computing systems become more popular for scientific data crunching, being able to interact with the shell is becoming a necessary skill. We can build on the command-line skills covered here to tackle a wide range of scientific questions and computational challenges.</p>
-<p>Let’s get started.</p>
-<p>When the shell is first opened, you are presented with a prompt, indicating that the shell is waiting for input:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-
-<pre><code style="">{Bash}
-jupyter-user$</code></pre>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div class="alert alert-block alert-info">
-<b>Tip:</b> Use blue boxes (alert-info) for tips and notes. 
-If it’s a note, you don’t have to include the word “Note”.
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div class="alert alert-block alert-warning">
-<b>Example:</b> Use yellow boxes for examples that are not 
-inside code cells, or use for mathematical formulas if needed.
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div class="alert alert-block alert-success">
-<b>Up to you:</b> Use green boxes sparingly, and only for some specific 
-purpose that the other boxes can't cover. For example, if you have a lot 
-of related content to link to, maybe you decide to use green boxes for 
-related links from each section of a notebook.
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div class="alert alert-block alert-danger">
-<b>Just don't:</b> In general, avoid the red boxes. These should only be
-used for actions that might cause data loss or another major issue.
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code style="background-color:#F7F7F7;border:1px solid #CFCFCF"><span class="err">$</span>
-</code></pre></div></div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>So let’s try our first command, <code class="language-plaintext highlighter-rouge">ls</code> which is short for listing.
-This command will list the contents of the current directory:</p><div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code style="background-color:#F7F7F7;border:1px solid #CFCFCF"><span class="nv">$ </span><span class="nb">ls</span>
-</code></pre></div></div><div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">Desktop     Downloads   Movies      Pictures
-Documents   Library     Music       Public
-</code></pre></div></div><blockquote class="callout">
-  <h2 id="command-not-found">Command not found</h2>
-  <p>If the shell can’t find a program whose name is the command you typed, it
-will print an error message such as:</p>
-
-  <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code style="background-color:#F7F7F7;border:1px solid #CFCFCF"><span class="nv">$ </span>ks
-</code></pre></div>  </div>
-  <div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ks: command not found
-</code></pre></div>  </div>
-
-  <p>This might happen if the command was mis-typed or if the program corresponding to that command
-is not installed.</p>
-</blockquote>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<pre>
-  <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">
-    p { color: red; }
-    body { background-color: #eee; }
-  </code>
-</pre>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div class="w3-panel w3-leftbar w3-border-yellow w3-pale-yellow w3-padding-small">
-    <h3 id="-ls-Reading-Comprehension%20"><i class="fa fa-pencil-square-o"></i> <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls</code> Reading Comprehension
-</h3>
-    <p>Assuming a directory structure as in the above Figure (File System for Challenge Questions), if <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">pwd</code> displays <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">/Users/backup</code>, and <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">-r</code> tells ls to display things in reverse order, what command will display:</p>
-<div class="highlight"><pre><span></span>pnas_sub/<span class="w"> </span>pnas_final/<span class="w"> </span>original/
-</pre></div>
-<ol>
-<li><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls pwd</code></li>
-<li><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls -r -F</code></li>
-<li><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls -r -F /Users/backup</code></li>
-<li>Either #2 or #3 above, but not #1.</li>
+    <ol>
+<li>No: <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">pwd</code> is not the name of a directory.</li>
+<li>Yes: <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls</code> without directory argument lists files and directories in the current directory.</li>
+<li>Yes: uses the absolute path explicitly.</li>
+<li>Correct: see explanations above.</li>
 </ol>
-<p><a href="./02_introducing_the_shell-soln.html#-ls-Reading-Comprehension%20">Solution</a></p>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div class="w3-bar w3-blue-grey">
-<a href="./01_getting_setup.html" class="w3-left-align w3-bar-item w3-button w3-mobile" style="width:33%"><h2><i class="fa fa-angle-double-left"></i> Previous</h2></a>
-<a href="./00_schedule.html" class="w3-bar-item w3-button w3-center w3-mobile" style="width:33%"><h2>Schedule</h2></a>
-<a href="./00_schedule.html" class="w3-right-align w3-bar-item w3-button w3-right w3-mobile" style="width:33%"><h2>Next <i class="fa fa-angle-double-right"></i></h2></a>
 </div>
 </div>
 </div>
