@@ -13138,6 +13138,106 @@ Try<span class="w"> </span><span class="s1">&#39;ls --help&#39;</span><span clas
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div class="w3-panel w3-leftbar w3-border-blue w3-pale-blue w3-padding-small">
+    <h3 id="-Exploring-Further%20"><i class="fa fa-eye"></i> Exploring Further
+</h3>
+    <p>We can see what is in the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">data</code> folder by passing the firectory name as an argument to <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls</code> in the same way as before.</p>
+<div class="highlight"><pre><span></span>jupyter-user:~<span class="nv">$ls</span><span class="w"> </span>-F<span class="w"> </span>IntroShell/data
+shell-lession-data
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="w3-panel w3-leftbar w3-border-blue w3-pale-blue w3-padding-small">
+    <h3 id="-Confirming-the-change%20"><i class="fa fa-eye"></i> Confirming the change
+</h3>
+    <p>Use the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">pwd</code> command we learned earlier:</p>
+<div class="highlight"><pre><span></span>jupyter-user:~<span class="nv">$pwd</span>
+/jupyter/jupyter-user/IntroShell
+<span class="sb">`</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="w3-panel w3-leftbar w3-border-blue w3-pale-blue w3-padding-small">
+    <h3 id="-Change-directory-again%20"><i class="fa fa-eye"></i> Change directory again
+</h3>
+    <p>We check the contents of the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">IntroShell</code> folder with again with <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls</code>:</p>
+<div class="highlight"><pre><span></span>jupyter-user:~<span class="nv">$ls</span>
+data
+<span class="sb">`</span>
+</pre></div>
+<p>and then move into the directory with the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">cd</code> command:</p>
+<div class="highlight"><pre><span></span>jupyter-user:~<span class="nv">$cd</span><span class="w"> </span>data
+jupyter-user:~<span class="nv">$pwd</span>
+/jupyter/jupyter-user/IntroShell/data
+<span class="sb">`</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="w3-panel w3-leftbar w3-border-blue w3-pale-blue w3-padding-small">
+    <h3 id="-And-once-more-for-luck%20"><i class="fa fa-eye"></i> And once more for luck
+</h3>
+    <div class="highlight"><pre><span></span>jupyter-user:~<span class="nv">$ls</span>
+shell-lesson-data
+jupyter-user:~<span class="nv">$cd</span><span class="w"> </span>shell-lesson-data
+jupyter-user:~<span class="nv">$pwd</span>
+/jupyter/jupyter-user/IntroShell/data/shell-lesson-data
+jupyter-user:~<span class="nv">$ls</span><span class="w"> </span>-F
+exercise-data/<span class="w">  </span>north-pacific-gyre/
+<span class="sb">`</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="w3-panel w3-leftbar w3-border-blue w3-pale-blue w3-padding-small">
+    <h3 id="-Special-Directory%20"><i class="fa fa-eye"></i> Special Directory
+</h3>
+    <p>We can check where the special directory <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">.</code> refers to by changing directory to it and issuing the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">pwd</code> command:</p>
+<div class="highlight"><pre><span></span>jupyter-user:<span class="nv">$cd</span><span class="w"> </span>.
+jupyter-user:<span class="nv">$pwd</span>
+/jupyter/jupyter-user/IntroShell/data
+</pre></div>
+<p><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">.</code>  means "the current working directory". It may seem redundant to have a name for it, but we'll see some uses for it soon.</p>
+<p>Note that in most command line tools, multiple flags can be combined with a single <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">-</code> and no spaces between the flags: <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls -F -a</code> is equivalent to <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls -Fa</code>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="w3-panel w3-leftbar w3-border-blue w3-pale-blue w3-padding-small">
+    <h3 id="-Absolute-Paths%20"><i class="fa fa-eye"></i> Absolute Paths
+</h3>
+    <div class="highlight"><pre><span></span>jupyter-user:<span class="nv">$pwd</span>
+/jupyter/jupyter-user/IntroShell/data/shell-lesson-data
+jupyter-user:<span class="nv">$cd</span><span class="w"> </span>/jupyter/jupyter-user/IntroShell
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="w3-panel w3-leftbar w3-border-blue w3-pale-blue w3-padding-small">
     <h3 id="-Absolute-vs-Relative-Paths%20"><i class="fa fa-eye"></i> Absolute vs Relative Paths
 </h3>
     <ol>

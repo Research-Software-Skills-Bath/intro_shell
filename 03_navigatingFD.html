@@ -13157,19 +13157,8 @@ However, when you type this lesson’s commands on your computer or another syst
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div class="highlight"><pre><span></span>jupyter-user~:<span class="nv">$pwd</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The prints the output from the pwd command:</p>
-<div class="highlight"><pre><span></span>jupyter-user~:<span class="nv">$pwd</span>
 /jupyter/jupyter-user
 </pre></div>
-<p>This is known as our <em>home directory</em>.</p>
 
 </div>
 </div>
@@ -13177,11 +13166,17 @@ However, when you type this lesson’s commands on your computer or another syst
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<div class="alert alert-block alert-info">
-<b>Info:</b> The home directory path will look different on different operating systems. On our JupyterHub server our home directory is in `/jupyter/jupyter-user`, on Linux it may look like `/home/jupyter-user`, and on Windows it will be similar to `C:\Documents and Settings\jupyter-user` or `C:\Users\jupyter-user`.
+<p>This is known as our <strong>home directory</strong>.</p>
 
-(Note that it may look slightly different for different versions of Windows.) In all of our examples, we've used jupyter notebooks output as the default - Linux, Windows and Mac output will differ.
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Information">Information<a class="anchor-link" href="#Information">&#182;</a></h2><p>The home directory path will look different on different operating systems. On our JupyterHub server our home directory is in <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">/jupyter/jupyter-user</code>, on Linux it may look like <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">/home/jupyter-user</code>, and on Windows it will be similar to <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">C:\Documents and Settings\jupyter-user</code> or <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">C:\Users\jupyter-user</code>.</p>
+<p>(Note that it may look slightly different for different versions of Windows.)</p>
+
 </div>
 </div>
 </div>
@@ -13207,7 +13202,7 @@ However, when you type this lesson’s commands on your computer or another syst
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Inside that directory are several other directories: <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">bin</code> (which is where some built-in programs are stored), <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">data</code> (for miscellaneous data files), <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">Users</code> (where users' personal directories are located), <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">tmp</code> (for temporary files that don't need to be stored long-term), and so on.</p>
-<p>We know that our current working directory <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">/Users/nelle</code> is stored inside <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">/Users</code> because <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">/Users</code> is the first part of its name. Similarly, we know that <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">/Users</code> is stored inside the root directory <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">/</code> because its name begins with <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">/</code>.</p>
+<p>We know that our current working directory <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">/jupyter/jupyter-username</code> is stored inside <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">/jupyter/</code> as <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">/jupyter/</code> is the first part of its name. In the same way Nell's home directory <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">/Users/nelle</code> is stored inside <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">/Users</code> because <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">/Users</code> is the first part of its name. Similarly, we know that <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">/Users</code> is stored inside the root directory <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">/</code> because its name begins with <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">/</code>.</p>
 
 </div>
 </div>
@@ -13248,7 +13243,7 @@ IntroShell<span class="w">  </span>Welcome.ipynb<span class="w">  </span>courses
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls</code> prints the names of the files and directories in the current directory. We can make its output more comprehensible by using the <strong>flag</strong> <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">-F</code> (also known as a <strong>switch</strong> or an <strong>option</strong>) , which tells <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls</code> to add a marker to file and directory names to indicate what they are. A trailing <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">/</code> indicates that this is a directory. Depending on your settings, it might also use colors to indicate whether each entry is a file or directory.</p>
+<p><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls</code> prints the names of the files and directories in the current directory. We can make its output more comprehensible by using the <strong>flag</strong> <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">-F</code> (also known as a <strong>switch</strong> or an <strong>option</strong>) , which tells <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls</code> to add a marker to file and directory names to indicate what they are:</p>
 
 </div>
 </div>
@@ -13259,6 +13254,19 @@ IntroShell<span class="w">  </span>Welcome.ipynb<span class="w">  </span>courses
 <div class="highlight"><pre><span></span>jupyter-user:~<span class="nv">$ls</span><span class="w"> </span>-F
 IntroShell/<span class="w">  </span>Welcome.ipynb@<span class="w">  </span>courses@
 </pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>A trailing <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">/</code> indicates that this is a directory</li>
+<li>@ indicates a link</li>
+<li><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">*</code> indicates an executable</li>
+</ul>
+<p>Depending on your settings, it might also use colors to indicate the entry types. Any names that don;t have a classification symbol are just plain old files.</p>
 
 </div>
 </div>
@@ -13370,9 +13378,12 @@ DESCRIPTION
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Excercise:-ls-options">Excercise: ls options<a class="anchor-link" href="#Excercise:-ls-options">&#182;</a></h2><p>inspect the manual, or the output from <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls --help</code> and issue a flag to <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls</code> that isnt listed. What happens?</p>
-<p><a href="">Solution</a></p>
-
+<div class="w3-panel w3-leftbar w3-border-yellow w3-pale-yellow w3-padding-small">
+    <h3 id="-ls-options%20"><i class="fa fa-pencil-square-o"></i> ls options
+</h3>
+    <p>inspect the manual, or the output from <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls --help</code> and issue a flag to <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls</code> that isnt listed. What happens?</p>
+<p><a href="./03_navigatingFD-soln.html#-ls-options%20">Solution</a></p>
+</div>
 </div>
 </div>
 </div>
@@ -13404,270 +13415,11 @@ DESCRIPTION
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="The-data">The data<a class="anchor-link" href="#The-data">&#182;</a></h2><p>For the rest of this lesson we will make use of a collection of files that are in a zip file that we copied to our home direectory in the setup.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">bash2</span>
-ls -l intro-linux
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>data-shell
-data-shell.zip
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>We need change our location to a different directory, so we are no longer located in our home directory.</p>
-<p>The command to change locations is <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">cd</code> followed by a directory name to change our working directory. <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">cd</code> stands for “change directory”, which is a bit misleading: the command doesn’t change the directory, it changes the shell’s idea of what directory we are in.</p>
-<p>Let’s say we want to move to the directory we just created. We can use the following series of commands to get there:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">bash2</span>
-cd intro-linux
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Now our directory contains a zip file, <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">data-shell.zip</code>, (how can you check this?) which we need to unzip with the command:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">bash2</span>
-unzip data-shell.zip
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Archive:  data-shell.zip
-[Errno 2] No such file or directory: &#39;replace data-shell/notes.txt? [y]es, [n]o, [A]ll, [N]one, [r]ename: error:  invalid response [echo :pwd]\nreplace data-shell/notes.txt? [y]es, [n]o, [A]ll, [N]one, [r]ename: error:  invalid response [:`pwd` &gt;&amp;]\nreplace data-shell/notes.txt? [y]es, [n]o, [A]ll, [N]one, [r]ename: error:  invalid response [2]\nreplace data-shell/notes.txt? [y]es, [n]o, [A]ll, [N]one, [r]ename:  NULL\n(EOF or read error, treating as &#34;[N]one&#34; ...)&#39;
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Now we can check the contents of the zip by running <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls</code>:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">bash2</span>
-ls
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>data-shell
-data-shell.zip
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Unzipping the file has created a new directory <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">data-shell</code>.  As before we can check the contents of this with:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">bash2</span> 
-ls -F data-shell
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>creatures/
+<h2 id="Exploring-other-directories">Exploring other directories<a class="anchor-link" href="#Exploring-other-directories">&#182;</a></h2><p>Not only can we use ls on the current working directory, but we can use it to list the contents of a different directory. Let’s take a look at the one of the directories in our home directory by running:</p>
+<div class="highlight"><pre><span></span>jupyter-user:~<span class="nv">$ls</span><span class="w"> </span>-F<span class="w"> </span>IntroShell
 data/
-molecules/
-north-pacific-gyre/
-notes.txt
-pizza.cfg
-solar.pdf
-thesis/
-writing/
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Here, we can see that our <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">data-shell</code> directory contains mostly sub-directories. Any names in your output that don't have trailing slashes, are plain old files. And note that there is a space between <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls</code> and <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">-F</code>: without it, the shell thinks we're trying to run a command called <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls-F</code>, which doesn't exist.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>We can also use ls to see the contents of a different directory. Let's take a look at our <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">data</code> directory by running <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls -F data</code>, i.e., the command <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls</code> with the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">-F</code> flag and the argument <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">data-shell</code>. The argument <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">data</code> tells <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls</code> that we want a listing of something other than our current working directory:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">bash2</span> 
-ls -F data-shell
 </pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>creatures/
-data/
-molecules/
-north-pacific-gyre/
-notes.txt
-pizza.cfg
-solar.pdf
-thesis/
-writing/
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div class="w3-panel w3-leftbar w3-border-blue w3-pale-blue w3-padding-small">
-    <h3 id="-Parameters-and-Arguments%20"><i class="fa fa-info-circle"></i> Parameters and Arguments
-</h3>
-    <p>According to Wikipedia, the terms argument and parameter mean slightly different things. In practice, however, most people use them interchangeably to refer to the input term(s) given to a command.</p>
-<p><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls</code> is the command, <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">-lh</code> are the flags (also called options), and <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">data-shell</code> is the argument.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Your output should be a list of all the files in the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">data-shell</code> directory.  This is the directory that you downloaded and extracted at the start of the lesson. If the directory does not exist, check that you have downloaded it to the correct folder.</p>
+<p>, i.e., the command ls with the -F option and the argument <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">IntroShell</code>. The argument <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">IntroShell</code> tells ls that we want a listing of something other than our current working directory, and we can see that in the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">IntroShell</code> directory there is another directory called <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">data</code>.</p>
 <p>As you may now see, using a bash shell is strongly dependent on the idea that your files are organized in a hierarchical file system. Organizing things hierarchically in this way helps us keep track of our work: it’s possible to put hundreds of files in our home directory, just as it’s possible to pile hundreds of printed papers on our desk, but it’s a self-defeating strategy.</p>
 
 </div>
@@ -13676,168 +13428,94 @@ writing/
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Let's say we want to move to the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">data</code> directory we saw above. We can use the following commands to get there:</p>
-
+<div class="w3-panel w3-leftbar w3-border-blue w3-pale-blue w3-padding-small">
+    <h3 id="-Parameters-and-Arguments%20"><i class="fa fa-info-circle"></i> Parameters and Arguments
+</h3>
+    <p>According to Wikipedia, the terms argument and parameter mean slightly different things. In practice, however, most people use them interchangeably to refer to the input term(s) given to a command.</p>
+<p><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls</code> is the command, <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">-F</code> are the flags (also called options), and <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">IntroShell/data</code> is the argument.</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">bash2</span> 
-cd data-shell
-cd data
-</pre></div>
-
-    </div>
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>These commands will move us from our home directory to the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">data-shell</code> directory and then into the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">data</code> directory. <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">cd</code> doesn't print anything, but if we run <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">pwd</code> after it, we can see that we are now in <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">/Users/nelle/Desktop/data-shell/data</code>. If we run ls without arguments now, it lists the contents of <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">/Users/nelle/Desktop/data-shell/data</code>, because that's where we now are:</p>
-
+<div class="w3-panel w3-leftbar w3-border-yellow w3-pale-yellow w3-padding-small">
+    <h3 id="-Exploring-further%20"><i class="fa fa-pencil-square-o"></i> Exploring further
+</h3>
+    <p>List the contents of the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">data</code> folder.</p>
+<p><a href="./03_navigatingFD-soln.html#-Exploring-further%20">Solution</a></p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">bash2</span>
-pwd
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>/home/nbuser/library/data/data-shell/data
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">bash2</span>
-ls -F
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>amino-acids.txt
-animal-counts/
-animals.txt
-elements/
-morse.txt
-pdb/
-planets.txt
-salmon.txt
-sunspot.txt
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We can do this again and change directory into the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">elements</code> directory and use <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">pwd</code> to verify that we have changed into another directory.</p>
+<p>We if we wish to change our location to a different directory, so we are no longer located in our home directory.</p>
+<p>The command to change locations is <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">cd</code> followed by a directory name to change our working directory. <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">cd</code> stands for “change directory” i.e. thischanges the directory we are located in.</p>
+<p>Let’s say we want to move to the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">IntroShell/</code> directory. We can use the following command to get there:</p>
 
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">bash2</span>
-cd elements
-pwd
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>/home/nbuser/library/data/data-shell/data/elements
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We now know how to go down the directory tree, but how do we go up? We might try the following:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">bash2</span>
-cd data
+<div class="highlight"><pre><span></span>jupyter-user:~<span class="nv">$cd</span><span class="w"> </span>IntroShell
+<span class="sb">`</span>
 </pre></div>
 
-    </div>
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="w3-panel w3-leftbar w3-border-yellow w3-pale-yellow w3-padding-small">
+    <h3 id="-Confirming-the-change%20"><i class="fa fa-pencil-square-o"></i> Confirming the change
+</h3>
+    <p>How can we see the directory we are located in and confirm it has changed.</p>
+<p><a href="">Solution</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="w3-panel w3-leftbar w3-border-yellow w3-pale-yellow w3-padding-small">
+    <h3 id="-Change-directory-again%20"><i class="fa fa-pencil-square-o"></i> Change directory again
+</h3>
+    <p>We know this directory contains a further directory, known as a <strong>subdirectory</strong>. Check what the directory is called again and then move to this directory.</p>
+<p><a href="./03_navigatingFD-soln.html#-Change-directory-again%20">Solution</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="w3-panel w3-leftbar w3-border-yellow w3-pale-yellow w3-padding-small">
+    <h3 id="-And-once-more-for-luck%20"><i class="fa fa-pencil-square-o"></i> And once more for luck
+</h3>
+    <p>Here, we can see that our <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">data</code> directory contains another subdirectory, <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">shell-lesson-data</code>, confirm this and move to <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">shell-lesson-data</code>, then display the contents.</p>
+<p><a href="./03_navigatingFD-soln.html#-And-once-more-for-luck%20">Solution</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We now know how to go down the directory tree (i.e. how to go into a subdirectory), but how do we go up (i.e. how do we leave a directory and go into its parent directory)? We might try the following:</p>
+<div class="highlight"><pre><span></span>jupyter-user:~<span class="nv">$cd</span><span class="w"> </span>data
+bash:<span class="w"> </span>cd:<span class="w"> </span>data:<span class="w"> </span>No<span class="w"> </span>such<span class="w"> </span>file<span class="w"> </span>or<span class="w"> </span>directory
+<span class="sb">`</span>
+</pre></div>
 
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -13856,115 +13534,22 @@ cd data
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">bash2</span>
-cd ..
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span>jupyter-user:~<span class="nv">$cd</span><span class="w"> </span>..
 </pre></div>
 
-    </div>
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">..</code> is a special directory name meaning "the directory containing this one", or more succinctly, the parent of the current directory. Sure enough, if we run <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">pwd</code> after running <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">cd ..</code>, we're back in <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">/Users/nelle/Desktop/data-shell/data</code>:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">bash2</span>
-pwd
+<p><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">..</code> is a special directory name meaning "the directory containing this one", or more succinctly, the parent of the current directory. Sure enough, if we run <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">pwd</code> after running <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">cd ..</code>, we're back in <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">/jupyter/jupyter-cor22/IntroShell/data</code>:</p>
+<div class="highlight"><pre><span></span>jupyter-user:~<span class="nv">$pwd</span>
+/jupyter/jupyter-cor22/IntroShell/data
 </pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>/home/nbuser/library/data/data-shell/data
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The special directory <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">..</code> doesn't usually show up when we run <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls</code>. If we want to display it, we can give <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls</code> the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">-a</code> flag:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">bash2</span>
-ls -F -a
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>./
-../
-amino-acids.txt
-animal-counts/
-animals.txt
-elements/
-morse.txt
-pdb/
-planets.txt
-salmon.txt
-sunspot.txt
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">-a</code> stands for "show all"; it forces ls to show us file and directory names that begin with <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">.</code>, such as <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">..</code> (which, if we're in <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">/Users/nelle</code>, refers to the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">/Users</code> directory) As you can see, it also displays another special directory that's just called <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">.</code>, which means "the current working directory". It may seem redundant to have a name for it, but we'll see some uses for it soon.</p>
-<p>Note that in most command line tools, multiple flags can be combined with a single <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">-</code> and no spaces between the flags: <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls -F -a</code> is equivalent to <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls -Fa</code>.</p>
 
 </div>
 </div>
@@ -13972,43 +13557,44 @@ sunspot.txt
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We can get back to the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">data-shell</code> directory the same way:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">bash2</span>
-cd ..
-pwd
+<p>The special directory <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">..</code> doesn't usually show up when we run <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls</code>. If we want to display it, we can give <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls</code> the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">-a</code> flag:</p>
+<div class="highlight"><pre><span></span>jupyter-user:~<span class="nv">$ls</span><span class="w"> </span>-a
+.<span class="w">  </span>..<span class="w">  </span>shell-lesson-data
 </pre></div>
 
-    </div>
 </div>
 </div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>/home/nbuser/library/data/data-shell
-</pre>
 </div>
-</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">-a</code> stands for "show all"; it forces ls to show us file and directory names that begin with <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">.</code>, such as <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">..</code> (which, if we're in <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">/jupyter/jupyter-user/IntroShell/data</code>, refers to the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">/jupyter/jupyter-user/IntroShell/data</code> directory) As you can see, it also displays another special directory that's just called <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">.</code>.</p>
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="w3-panel w3-leftbar w3-border-yellow w3-pale-yellow w3-padding-small">
+    <h3 id="-Special-Directory%20"><i class="fa fa-pencil-square-o"></i> Special Directory
+</h3>
+    <p>WHere does the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">.</code> special directory refer to?</p>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can get back to the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">IntroShell</code> directory the same way:</p>
+<div class="highlight"><pre><span></span>jupyter-user:<span class="nv">$cd</span><span class="w"> </span>..
+jupyter-user:<span class="nv">$pwd</span>
+/jupyter/jupyter-user/IntroShell
+</pre></div>
 
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -14024,35 +13610,12 @@ pwd
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<div class="w3-panel w3-leftbar w3-border-blue w3-pale-blue w3-padding-small">
-    <h3 id="-Orthogonality%20"><i class="fa fa-info-circle"></i> Orthogonality
-</h3>
-    <p>The special names <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">.</code> and <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">..</code> don't belong to <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">cd</code>; they are interpreted the same way by every program. For example, if we are in <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">/Users/nelle/data</code>, the command <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls ..</code> will give us a listing of <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">/Users/nelle</code>. When the meanings of the parts are the same no matter how they're combined, programmers say they are <strong>orthogonal</strong>: Orthogonal systems tend to be easier for people to learn because there are fewer special cases and exceptions to keep track of.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Let's try returning to the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">elements</code> directory in the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">data</code> direcotry, which we saw above. Last time, we used two commands, but we can actually string together the list of directories to move to <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">elements</code> in one step:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">bash2</span>
-cd data/elements
+<p>Let's try returning to the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">shell-lesson-data</code> directory in the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">data</code> directory, which we saw before. Last time, we used two commands, but we can actually string together the list of directories to move to <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">shell-lesson-data</code> in one step:</p>
+<div class="highlight"><pre><span></span>jupyter-user:<span class="nv">$cd</span><span class="w"> </span>data/shell-lesson-data
 </pre></div>
 
-    </div>
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -14074,7 +13637,7 @@ cd data/elements
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>However, it is possible to specify the <strong>absolute path</strong> to a directory by including its entire path from the root directory, which is indicated by a leading slash. The leading <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">/</code> tells the computer to follow the path from the root of the file system, so it always refers to exactly one directory, no matter where we are when we run the command.</p>
+<p>However, it is possible to specify the <strong>absolute path</strong> to a directory by including its entire path from the root directory, which is indicated by a leading slash. The leading <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">/</code> tells the computer to follow the path from the root of the file system, so it always refers to exactly one directory, no matter where we are when we run the command. This allows us to move to any directory from anywhere on the filesystem.</p>
 
 </div>
 </div>
@@ -14082,51 +13645,12 @@ cd data/elements
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This allows us to move to our <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">data-shell</code> directory from anywhere on the filesystem (including from inside <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">data</code>). To find the absolute path we're looking for, we can use <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">pwd</code> and then extract the piece we need to move to <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">data-shell</code>.</p>
-
+<div class="w3-panel w3-leftbar w3-border-yellow w3-pale-yellow w3-padding-small">
+    <h3 id="-Absiolute-Paths%20"><i class="fa fa-pencil-square-o"></i> Absiolute Paths
+</h3>
+    <p>Us <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">pwd</code> to find the <strong>absolute</strong> path of the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">IntroShell</code> directory, and then move to it.</p>
+<p><a href="">Solution</a></p>
 </div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">bash2</span>
-pwd
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>/home/nbuser/library/data/data-shell/data/elements
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div class="highlight"><pre><span></span>%%bash2
-<span class="nb">cd</span><span class="w"> </span>/home/nbuser/library/data/data-shell/
-</pre></div>
-<p>Don't execute this command, as the absolute path may be different for you!  Instead select the output from your <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">pwd</code> command up to and including <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">data-shell</code>.</p>
-
 </div>
 </div>
 </div>
@@ -14147,59 +13671,25 @@ pwd
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">bash2</span>
-cd
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span>jupyter-user:<span class="nv">$cd</span>
 </pre></div>
 
-    </div>
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>How can you check what happened? <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">pwd</code> gives us the answer!</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[26]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">bash2</span>
-pwd
+<div class="highlight"><pre><span></span>jupyter-user:<span class="nv">$pwd</span>
+/jupyter/jupyter-user
 </pre></div>
 
-    </div>
 </div>
 </div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>/home/nbuser
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -14255,9 +13745,9 @@ pwd
 <li><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">../backup: No such file or directory</code></li>
 <li><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">2012-12-01 2013-01-08 2013-01-27</code></li>
 <li><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">2012-12-01/ 2013-01-08/ 2013-01-27/</code></li>
-<li><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">original/ pnas_final/ pnas_sub/</code>
-<img src="./images/filesystem-challenge.svg" alt=""></li>
+<li><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">original/ pnas_final/ pnas_sub/</code></li>
 </ol>
+<p><img src="./images/03/filesystem-challenge.svg" alt=""></p>
 <p><a href="./03_navigatingFD-soln.html#-Relative-Path-Resolution%20">Solution</a></p>
 </div>
 </div>
@@ -14269,9 +13759,10 @@ pwd
 <div class="w3-panel w3-leftbar w3-border-yellow w3-pale-yellow w3-padding-small">
     <h3 id="-ls-Reading-Comprehension%20"><i class="fa fa-pencil-square-o"></i> <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls</code> Reading Comprehension
 </h3>
-    <p>Assuming a directory structure as in the above Figure (File System for Challenge Questions), if <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">pwd</code> displays <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">/Users/backup</code>, and <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">-r</code> tells ls to display things in reverse order, what command will display:</p>
+    <p>Using the filesystem diagram below, if <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">pwd</code> displays <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">/Users/backup</code>, and <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">-r</code> tells ls to display things in reverse order, what command will display:</p>
 <div class="highlight"><pre><span></span>pnas_sub/<span class="w"> </span>pnas_final/<span class="w"> </span>original/
 </pre></div>
+<p><img src="./images/03/filesystem-challenge.svg" alt=""></p>
 <ol>
 <li><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls pwd</code></li>
 <li><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls -r -F</code></li>
@@ -14280,6 +13771,40 @@ pwd
 </ol>
 <p><a href="./03_navigatingFD-soln.html#-ls-Reading-Comprehension%20">Solution</a></p>
 </div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="General-syntax-of-a-Shell-Command">General syntax of a Shell Command<a class="anchor-link" href="#General-syntax-of-a-Shell-Command">&#182;</a></h2><p>We have now encountered commands, options, and arguments, but it is perhaps useful to formalise some terminology.</p>
+<p>Consider the command below as a general example of a command, which we will dissect into its component parts:</p>
+<div class="highlight"><pre><span></span>jupyter-user:<span class="nv">$ls</span><span class="w"> </span>-F<span class="w"> </span>/
+</pre></div>
+<p><img src="./images/03/shell_command_syntax.svg" alt=""></p>
+<p><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls</code> is the command, with an option <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">-F</code> and an argument <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">/</code>. We’ve already encountered options which either start with a single dash (<code style="background-color:#F7F7F7;border:1px solid #CFCFCF">-</code>) or two dashes (<code style="background-color:#F7F7F7;border:1px solid #CFCFCF">--</code>), and they change the behavior of a command. Arguments tell the command what to operate on (e.g. files and directories). Sometimes options and arguments are referred to as parameters. A command can be called with more than one option and more than one argument, but a command doesn’t always require an argument or an option.</p>
+<p>You might sometimes see options being referred to as switches or flags, especially for options that take no argument. In this lesson we will stick with using the term option.</p>
+<p>Each part is separated by spaces: if you omit the space between <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls</code> and <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">-F</code> the shell will look for a command called <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls-F</code>, which doesn’t exist. Also, capitalization can be important. For example, <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls -s</code> will display the size of files and directories alongside the names, while <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls -S</code> will sort the files and directories by size, as shown below:</p>
+<div class="highlight"><pre><span></span>jupyter-user:<span class="nv">$cd</span><span class="w"> </span>~/IntroShell/data/shell-lesson-data
+jupyter-user:<span class="w"> </span>ls<span class="w"> </span>-s<span class="w"> </span>exercise-data
+<span class="m">0</span><span class="w"> </span>animal-counts<span class="w">  </span><span class="m">0</span><span class="w"> </span>creatures<span class="w">  </span><span class="m">4</span><span class="w"> </span>numbers.txt<span class="w">  </span><span class="m">0</span><span class="w"> </span>proteins<span class="w">  </span><span class="m">0</span><span class="w"> </span>writing
+</pre></div>
+<div class="alert alert-block alert-info">
+<b>Note:</b> Note that the sizes returned by ls -s are in blocks. As these are defined differently for different operating systems, you may not obtain the same figures as in the example.
+</div><div class="highlight"><pre><span></span>jupyter-user:<span class="nv">$cd</span><span class="w"> </span>~/IntroShell/data/shell-lesson-data
+jupyter-user:<span class="w"> </span>ls<span class="w"> </span>-S<span class="w"> </span>exercise-data
+proteins<span class="w">  </span>creatures<span class="w">  </span>writing<span class="w">  </span>animal-counts<span class="w">  </span>numbers.txt
+</pre></div>
+<p>Putting all that together the command <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls -f /</code> gives us a listing of the files and directories in the root directory <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">/</code>:</p>
+<div class="highlight"><pre><span></span>jupyter-user:<span class="nv">$ls</span><span class="w"> </span>-F<span class="w"> </span>/
+<span class="m">1</span><span class="w">      </span>initrd.img@<span class="w">               </span>lib/<span class="w">         </span>proc/<span class="w">  </span>sys/
+bin/<span class="w">   </span>initrd.img.old@<span class="w">           </span>lib64/<span class="w">       </span>root/<span class="w">  </span>tmp/
+boot/<span class="w">  </span>jupyter/<span class="w">                  </span>lost+found/<span class="w">  </span>run/<span class="w">   </span>usr/
+dev/<span class="w">   </span>jupyterhub-proxy.pid<span class="w">      </span>media/<span class="w">       </span>sbin/<span class="w">  </span>var/
+etc/<span class="w">   </span>jupyterhub.sqlite<span class="w">         </span>mnt/<span class="w">         </span>snap/<span class="w">  </span>vmlinuz@
+home/<span class="w">  </span>jupyterhub_cookie_secret<span class="w">  </span>opt/<span class="w">         </span>srv/<span class="w">   </span>vmlinuz.old@
+</pre></div>
+
 </div>
 </div>
 </div>
@@ -14321,19 +13846,6 @@ pwd
 <p><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls north-pacific-gyre/</code></p>
 <p>If she presses tab again, Bash will add <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">2012-07-03/</code> to the command, since it's the only possible completion. Pressing tab again does nothing, since there are 19 possibilities; pressing tab twice brings up a list of all the files, and so on. This is called <strong>tab completion</strong>, and we will see it in many other tools as we go on.</p>
 
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div class="w3-panel w3-leftbar w3-border-blue w3-pale-blue w3-padding-small">
-    <h3 id="-linux.bath-and-the-%E2%80%98H-drive%E2%80%99%20"><i class="fa fa-info-circle"></i> linux.bath and the ‘H-drive’
-</h3>
-    <p>Your results may be slightly different depending on how you have customized your filesystem.
-From the Windows taskbar open a File explorer window and open the ‘H-drive’ H: What do you notice about the output of ls and the contents of H:
-Also compare the output of ls dos and the contents of your Documents folder in Windows File Explorer.</p>
-</div>
 </div>
 </div>
 </div>
