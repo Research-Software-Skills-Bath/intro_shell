@@ -13228,6 +13228,42 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Nelle's-Pipeline:-A-Typical-Problem">Nelle's Pipeline: A Typical Problem<a class="anchor-link" href="#Nelle's-Pipeline:-A-Typical-Problem">&#182;</a></h2><p>Nelle Nemo, a marine biologist, has just returned from a six-month survey of the North Pacific Gyre, where she has been sampling gelatinous marine life in the Great Pacific Garbage Patch. She has 1520 samples that she’s run through an assay machine to measure the relative abundance of 300 proteins. She needs to run these 1520 files through an imaginary program called goostats.sh she inherited. On top of this huge task, she has to write up results by the end of the month so her paper can appear in a special issue of Aquatic Goo Letters.</p>
+<p>The bad news is that if she has to run goostats.sh by hand using a GUI, she’ll have to select and open a file 1520 times. If goostats.sh takes 30 seconds to run each file, the whole process will take more than 12 hours of Nelle’s attention. With the shell, Nelle can instead assign her computer this mundane task while she focuses her attention on writing her paper.</p>
+<p>The next few lessons will explore the ways Nelle can achieve this. More specifically, they explain how she can use a command shell to run the goostats.sh program, using loops to automate the repetitive steps of entering file names, so that her computer can work while she writes her paper.</p>
+<p>As a bonus, once she has put a processing pipeline together, she will be able to use it again whenever she collects more data.</p>
+<p>In order to achieve her task, Nelle needs to know how to:</p>
+<ul>
+<li>navigate to a file/directory</li>
+<li>create a file/directory</li>
+<li>check the length of a file</li>
+<li>chain commands together</li>
+<li>retrieve a set of files</li>
+<li>iterate over files</li>
+<li>run a shell script containing her pipeline</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="w3-panel w3-leftbar w3-border-green w3-pale-green w3-padding-small">
+    <h3 id="-Key-Points%3A%20"><i class="fa fa-key"></i> Key Points:
+</h3>
+    <ul>
+<li>A shell is a program whose primary purpose is to read commands and run other programs.</li>
+<li>The shell's main advantages are its high action-to-keystroke ratio, its support for automating repetitive tasks, and its capacity to access networked machines.</li>
+<li>The shell's main disadvantages are its primarily textual nature and how cryptic its commands and operation can be.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <div class="w3-bar w3-blue-grey">
 <a href="./01_getting_setup.html" class="w3-left-align w3-bar-item w3-button w3-mobile" style="width:33%"><h2><i class="fa fa-angle-double-left"></i> Previous</h2></a>
 <a href="./00_schedule.html" class="w3-bar-item w3-button w3-center w3-mobile" style="width:33%"><h2>Schedule</h2></a>
