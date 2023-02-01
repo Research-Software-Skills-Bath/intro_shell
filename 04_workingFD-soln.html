@@ -13172,6 +13172,65 @@ div#notebook {
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="w3-panel w3-leftbar w3-border-blue w3-pale-blue w3-padding-small">
+    <h3 id="-Using-Wildcards%20"><i class="fa fa-eye"></i> Using Wildcards
+</h3>
+    <p>The solution is 3.</p>
+<ol>
+<li>shows all files whose names contain zero or more characters (<code style="background-color:#F7F7F7;border:1px solid #CFCFCF">&ast;</code>) followed by the letter <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">t</code>, then zero or more characters (<code style="background-color:#F7F7F7;border:1px solid #CFCFCF">&ast;</code>) followed by <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ane.pdb</code>. This gives <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ethane.pdb</code> <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">methane.pdb</code> <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">octane.pdb</code> <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">pentane.pdb</code>.</li>
+<li>shows all files whose names start with zero or more characters (<code style="background-color:#F7F7F7;border:1px solid #CFCFCF">&ast;</code>) followed by the letter <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">t</code>, then a single character (<code style="background-color:#F7F7F7;border:1px solid #CFCFCF">?</code>), then <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ne</code>. followed by zero or more characters (<code style="background-color:#F7F7F7;border:1px solid #CFCFCF">&ast;</code>). This will give us <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">octane.pdb</code> and <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">pentane.pdb</code> but doesn't match anything which ends in <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">thane.pdb</code>.</li>
+<li>fixes the problems of option 2 by matching two characters (<code style="background-color:#F7F7F7;border:1px solid #CFCFCF">??</code>) between <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">t</code> and <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ne</code>. This is the solution.</li>
+<li>only shows files starting with <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ethane.</code>.</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="w3-panel w3-leftbar w3-border-blue w3-pale-blue w3-padding-small">
+    <h3 id="-More-on-Wildcards%20"><i class="fa fa-eye"></i> More on Wildcards
+</h3>
+    <div class="highlight"><pre><span></span>cp<span class="w"> </span>&ast;calibration.txt<span class="w"> </span>backup/calibration
+cp<span class="w"> </span><span class="m">2015</span>-11-&ast;<span class="w"> </span>/send_to_bob/all_november_files/
+cp<span class="w"> </span>&ast;-23-dataset&ast;<span class="w"> </span>send_to_bob/all_datasets_created_on_a_23rd/
+</pre></div>
+<p>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="w3-panel w3-leftbar w3-border-blue w3-pale-blue w3-padding-small">
+    <h3 id="-Organizing-Directories-and-Files%20"><i class="fa fa-eye"></i> Organizing Directories and Files
+</h3>
+    <div class="highlight"><pre><span></span>mv<span class="w"> </span>&ast;.dat<span class="w"> </span>analyzed
+</pre></div>
+<p>Jamie needs to move her files <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">fructose.dat</code> and <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">sucrose.dat</code> to the analyzed directory. The shell will expand <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">&ast;.dat</code> to match all <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">.dat</code> files in the current directory. The <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">mv</code> command then moves the list of <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">.dat</code> files to the "analyzed" directory.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="w3-panel w3-leftbar w3-border-blue w3-pale-blue w3-padding-small">
+    <h3 id="-Reproduce-a-Folder-Structure%20"><i class="fa fa-eye"></i> Reproduce a Folder Structure
+</h3>
+    <p>The first two sets of commands achieve this objective. The first set uses relative paths to create the top-level directory before the subdirectories.</p>
+<p>The third set of commands will give an error because the default behavior of mkdir won’t create a subdirectory of a non-existent directory: the intermediate level folders must be created first.</p>
+<p>The fourth set of commands achieve this objective. Remember, the -p option, followed by a path of one or more directories, will cause mkdir to create any intermediate subdirectories as required.</p>
+<p>The final set of commands generates the ‘raw’ and ‘processed’ directories at the same level as the ‘data’ directory.</p>
+</div>
+</div>
+</div>
+</div>
     </div>
   </div>
 </body>

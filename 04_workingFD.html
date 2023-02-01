@@ -13556,6 +13556,207 @@ jupyter-user:~<span class="nv">$cp</span><span class="w"> </span>minotaur.dat<sp
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Using-wildcards-for-accessing-multiple-files-at-once">Using wildcards for accessing multiple files at once<a class="anchor-link" href="#Using-wildcards-for-accessing-multiple-files-at-once">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="w3-panel w3-leftbar w3-border-blue w3-pale-blue w3-padding-small">
+    <h3 id="-Wildcards%20"><i class="fa fa-info-circle"></i> Wildcards
+</h3>
+    <p><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">&ast;</code> is a wildcard. It matches zero or more characters, so <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">&ast;.pdb</code> matches <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ethane.pdb</code>, <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">propane.pdb</code>, and every file that ends with '.pdb'. On the other hand, <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">p&ast;.pdb</code> only matches <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">pentane.pdb</code> and <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">propane.pdb</code>, because the 'p' at the front only matches filenames that begin with the letter 'p'.</p>
+<p><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">?</code> is also a wildcard, but it only matches a single character. This means that <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">p?.pdb</code> would match <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">pi.pdb</code> or <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">p5.pdb</code> (if we had these two files in the molecules directory), but not <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">propane.pdb</code>. We can use any number of wildcards at a time: for example, <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">p&ast;.p?&ast;</code> matches anything that starts with a 'p' and ends with '.', 'p', and at least one more character (since the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">?</code> has to match one character, and the final <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">&ast;</code> can match any number of characters). Thus, <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">p&ast;.p?&ast;</code> would match <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">preferred.practice</code>, and even <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">p.pi</code> (since the first <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">&ast;</code> can match no characters at all), but not <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">quality.practice</code> (doesn't start with 'p') or <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">preferred.p</code> (there isn't at least one character after the '.p').</p>
+<p>When the shell sees a wildcard, it expands the wildcard to create a list of matching filenames before running the command that was asked for. As an exception, if a wildcard expression does not match any file, Bash will pass the expression as an argument to the command as it is. For example typing <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls &ast;.pdf</code> in the molecules directory (which contains only files with names ending with <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">.pdb</code>) results in an error message that there is no file called <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">&ast;.pdf</code>. However, generally commands like <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">wc</code> and <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls</code> see the lists of file names matching these expressions, but not the wildcards themselves. It is the shell, not the other programs, that deals with expanding wildcards.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="w3-panel w3-leftbar w3-border-yellow w3-pale-yellow w3-padding-small">
+    <h3 id="-Using-Wildcards%20"><i class="fa fa-pencil-square-o"></i> Using Wildcards
+</h3>
+    <h2 id="Exercise:-Using-Wildcards">Exercise: Using Wildcards<a class="anchor-link" href="#Exercise:-Using-Wildcards">&#182;</a></h2><p>When run in the molecules directory, which ls command(s) will produce this output?</p>
+<div class="highlight"><pre><span></span>ethane.pdb<span class="w"> </span>methane.pdb
+</pre></div>
+<ul>
+<li><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls &ast;t&ast;ane.pdb</code></li>
+<li><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls &ast;t?ne.&ast;</code></li>
+<li><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls &ast;t??ne.pdb</code></li>
+<li><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls ethane.&ast;</code></li>
+</ul>
+<p><a href="./04_workingFD-soln.html#-Using-Wildcards%20">Solution</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="w3-panel w3-leftbar w3-border-yellow w3-pale-yellow w3-padding-small">
+    <h3 id="-More-on-Wildcards%20"><i class="fa fa-pencil-square-o"></i> More on Wildcards
+</h3>
+    <p>Sam has a directory containing calibration data, datasets, and descriptions of the datasets:</p>
+<div class="highlight"><pre><span></span>├──<span class="w"> </span><span class="m">2015</span>-10-23-calibration.txt
+├──<span class="w"> </span><span class="m">2015</span>-10-23-dataset1.txt
+├──<span class="w"> </span><span class="m">2015</span>-10-23-dataset2.txt
+├──<span class="w"> </span><span class="m">2015</span>-10-23-dataset_overview.txt
+├──<span class="w"> </span><span class="m">2015</span>-10-26-calibration.txt
+├──<span class="w"> </span><span class="m">2015</span>-10-26-dataset1.txt
+├──<span class="w"> </span><span class="m">2015</span>-10-26-dataset2.txt
+├──<span class="w"> </span><span class="m">2015</span>-10-26-dataset_overview.txt
+├──<span class="w"> </span><span class="m">2015</span>-11-23-calibration.txt
+├──<span class="w"> </span><span class="m">2015</span>-11-23-dataset1.txt
+├──<span class="w"> </span><span class="m">2015</span>-11-23-dataset2.txt
+├──<span class="w"> </span><span class="m">2015</span>-11-23-dataset_overview.txt
+├──<span class="w"> </span>backup
+│<span class="w">   </span>├──<span class="w"> </span>calibration
+│<span class="w">   </span>└──<span class="w"> </span>datasets
+└──<span class="w"> </span>send_to_bob
+<span class="w">    </span>├──<span class="w"> </span>all_datasets_created_on_a_23rd
+<span class="w">    </span>└──<span class="w"> </span>all_november_files
+</pre></div>
+<p>Before heading off to another field trip, she wants to back up her data and send some datasets to her colleague Bob. Sam uses the following commands to get the job done:</p>
+<div class="highlight"><pre><span></span>$<span class="w"> </span>cp<span class="w"> </span>&ast;dataset&ast;<span class="w"> </span>backup/datasets
+$<span class="w"> </span>cp<span class="w"> </span>____calibration____<span class="w"> </span>backup/calibration
+$<span class="w"> </span>cp<span class="w"> </span><span class="m">2015</span>-____-____<span class="w"> </span>send_to_bob/all_november_files/
+$<span class="w"> </span>cp<span class="w"> </span>____<span class="w"> </span>send_to_bob/all_datasets_created_on_a_23rd/
+</pre></div>
+<p>Help Sam by filling in the blanks.</p>
+<p>The resulting structure should look like:</p>
+<div class="highlight"><pre><span></span>├──<span class="w"> </span><span class="m">2015</span>-10-23-calibration.txt
+├──<span class="w"> </span><span class="m">2015</span>-10-23-dataset1.txt
+├──<span class="w"> </span><span class="m">2015</span>-10-23-dataset2.txt
+├──<span class="w"> </span><span class="m">2015</span>-10-23-dataset_overview.txt
+├──<span class="w"> </span><span class="m">2015</span>-10-26-calibration.txt
+├──<span class="w"> </span><span class="m">2015</span>-10-26-dataset1.txt
+├──<span class="w"> </span><span class="m">2015</span>-10-26-dataset2.txt
+├──<span class="w"> </span><span class="m">2015</span>-10-26-dataset_overview.txt
+├──<span class="w"> </span><span class="m">2015</span>-11-23-calibration.txt
+├──<span class="w"> </span><span class="m">2015</span>-11-23-dataset1.txt
+├──<span class="w"> </span><span class="m">2015</span>-11-23-dataset2.txt
+├──<span class="w"> </span><span class="m">2015</span>-11-23-dataset_overview.txt
+├──<span class="w"> </span>backup
+│<span class="w">   </span>├──<span class="w"> </span>calibration
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span><span class="m">2015</span>-10-23-calibration.txt
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span><span class="m">2015</span>-10-26-calibration.txt
+│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span><span class="m">2015</span>-11-23-calibration.txt
+│<span class="w">   </span>└──<span class="w"> </span>datasets
+│<span class="w">       </span>├──<span class="w"> </span><span class="m">2015</span>-10-23-dataset1.txt
+│<span class="w">       </span>├──<span class="w"> </span><span class="m">2015</span>-10-23-dataset2.txt
+│<span class="w">       </span>├──<span class="w"> </span><span class="m">2015</span>-10-23-dataset_overview.txt
+│<span class="w">       </span>├──<span class="w"> </span><span class="m">2015</span>-10-26-dataset1.txt
+│<span class="w">       </span>├──<span class="w"> </span><span class="m">2015</span>-10-26-dataset2.txt
+│<span class="w">       </span>├──<span class="w"> </span><span class="m">2015</span>-10-26-dataset_overview.txt
+│<span class="w">       </span>├──<span class="w"> </span><span class="m">2015</span>-11-23-dataset1.txt
+│<span class="w">       </span>├──<span class="w"> </span><span class="m">2015</span>-11-23-dataset2.txt
+│<span class="w">       </span>└──<span class="w"> </span><span class="m">2015</span>-11-23-dataset_overview.txt
+└──<span class="w"> </span>send_to_bob
+<span class="w">    </span>├──<span class="w"> </span>all_datasets_created_on_a_23rd
+<span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span><span class="m">2015</span>-10-23-dataset1.txt
+<span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span><span class="m">2015</span>-10-23-dataset2.txt
+<span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span><span class="m">2015</span>-10-23-dataset_overview.txt
+<span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span><span class="m">2015</span>-11-23-dataset1.txt
+<span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span><span class="m">2015</span>-11-23-dataset2.txt
+<span class="w">    </span>│<span class="w">   </span>└──<span class="w"> </span><span class="m">2015</span>-11-23-dataset_overview.txt
+<span class="w">    </span>└──<span class="w"> </span>all_november_files
+<span class="w">        </span>├──<span class="w"> </span><span class="m">2015</span>-11-23-calibration.txt
+<span class="w">        </span>├──<span class="w"> </span><span class="m">2015</span>-11-23-dataset1.txt
+<span class="w">        </span>├──<span class="w"> </span><span class="m">2015</span>-11-23-dataset2.txt
+<span class="w">        </span>└──<span class="w"> </span><span class="m">2015</span>-11-23-dataset_overview.txt
+</pre></div>
+<p><a href="./04_workingFD-soln.html#-More-on-Wildcards%20">Solution</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="w3-panel w3-leftbar w3-border-yellow w3-pale-yellow w3-padding-small">
+    <h3 id="-Organizing-Directories-and-Files%20"><i class="fa fa-pencil-square-o"></i> Organizing Directories and Files
+</h3>
+    <p>Jamie is working on a project and she sees that her files aren't very well organized:</p>
+<div class="highlight"><pre><span></span>ls<span class="w"> </span>-F
+analyzed/<span class="w">  </span>fructose.dat<span class="w">    </span>raw/<span class="w">   </span>sucrose.dat
+</pre></div>
+<p>The <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">fructose.dat</code> and <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">sucrose.dat</code> files contain output from her data analysis. What command(s) covered in this lesson does she need to run so that the commands below will produce the output shown?</p>
+<div class="highlight"><pre><span></span>ls<span class="w"> </span>-F
+analyzed/<span class="w">   </span>raw/
+ls<span class="w"> </span>analyzed
+fructose.dat<span class="w">    </span>sucrose.dat
+</pre></div>
+<p>.</p>
+<p><a href="./04_workingFD-soln.html#-Organizing-Directories-and-Files%20">Solution</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="w3-panel w3-leftbar w3-border-yellow w3-pale-yellow w3-padding-small">
+    <h3 id="-Reproduce-a-Folder-Structure%20"><i class="fa fa-pencil-square-o"></i> Reproduce a Folder Structure
+</h3>
+    <p>You’re starting a new experiment and would like to duplicate the directory structure from your previous experiment so you can add new data.</p>
+<p>Assume that the previous experiment is in a folder called 2016-05-18, which contains a data folder that in turn contains folders named raw and processed that contain data files. The goal is to copy the folder structure of the 2016-05-18 folder into a folder called 2016-05-20 so that your final directory structure looks like this:</p>
+<div class="highlight"><pre><span></span><span class="m">2016</span>-05-20/
+└──<span class="w"> </span>data
+<span class="w">   </span>├──<span class="w"> </span>processed
+<span class="w">   </span>└──<span class="w"> </span>raw
+</pre></div>
+<p>Which of the following set of commands would achieve this objective? What would the other commands do?</p>
+<div class="highlight"><pre><span></span>$<span class="w"> </span>mkdir<span class="w"> </span><span class="m">2016</span>-05-20
+$<span class="w"> </span>mkdir<span class="w"> </span><span class="m">2016</span>-05-20/data
+$<span class="w"> </span>mkdir<span class="w"> </span><span class="m">2016</span>-05-20/data/processed
+$<span class="w"> </span>mkdir<span class="w"> </span><span class="m">2016</span>-05-20/data/raw
+</pre></div>
+<div class="highlight"><pre><span></span>$<span class="w"> </span>mkdir<span class="w"> </span><span class="m">2016</span>-05-20
+$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="m">2016</span>-05-20
+$<span class="w"> </span>mkdir<span class="w"> </span>data
+$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>data
+$<span class="w"> </span>mkdir<span class="w"> </span>raw<span class="w"> </span>processed
+</pre></div>
+<div class="highlight"><pre><span></span>$<span class="w"> </span>mkdir<span class="w"> </span><span class="m">2016</span>-05-20/data/raw
+$<span class="w"> </span>mkdir<span class="w"> </span><span class="m">2016</span>-05-20/data/processed
+</pre></div>
+<div class="highlight"><pre><span></span>$<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="m">2016</span>-05-20/data/raw
+$<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="m">2016</span>-05-20/data/processed
+</pre></div>
+<div class="highlight"><pre><span></span>$<span class="w"> </span>mkdir<span class="w"> </span><span class="m">2016</span>-05-20
+$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="m">2016</span>-05-20
+$<span class="w"> </span>mkdir<span class="w"> </span>data
+$<span class="w"> </span>mkdir<span class="w"> </span>raw<span class="w"> </span>processed
+</pre></div>
+<p><a href="./04_workingFD-soln.html#-Reproduce-a-Folder-Structure%20">Solution</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Key-Points">Key Points<a class="anchor-link" href="#Key-Points">&#182;</a></h2><ul>
+<li><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">cp old new</code> copies a file.</li>
+<li><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">mkdir path</code> creates a new directory.</li>
+<li><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">mv old new</code> moves (renames) a file or directory.</li>
+<li><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">rm</code> path removes (deletes) a file.</li>
+<li><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">*</code> matches zero or more characters in a filename, so <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">*.txt</code> matches all files ending in <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">.txt</code>.</li>
+<li><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">?</code> matches any single character in a filename, so <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">?.txt</code> matches <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">a.txt</code> but not <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">any.txt</code>.</li>
+<li>Use of the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">Control</code> key may be described in many ways, including <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">Ctrl-X</code>, <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">Control-X</code>, and <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">^X</code>.</li>
+<li>The shell does not have a trash bin: once something is deleted, it's really gone.</li>
+<li>Depending on the type of work you do, you may need a more powerful text editor than Nano.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 
 </div>
 </div>
