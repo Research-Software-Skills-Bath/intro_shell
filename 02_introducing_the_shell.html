@@ -13181,15 +13181,6 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<div class="alert alert-block alert-warning">
-<b>Important:</b> When typing commands, either from these lessons or from other sources, do not type the prompt, only the commands that follow it. Also note that after you type a command, you have to press the Enter key to execute it.
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <div class="w3-panel w3-leftbar w3-border-blue w3-pale-blue w3-padding-small">
     <h3 id="-Command-prompt%20"><i class="fa fa-info-circle"></i> Command prompt
 </h3>
@@ -13201,27 +13192,33 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<div class="w3-panel w3-leftbar w3-border-yellow w3-pale-yellow w3-padding-small">
-    <h3 id="-ls-Reading-Comprehension%20"><i class="fa fa-pencil-square-o"></i> <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls</code> Reading Comprehension
-</h3>
-    <p>Assuming a directory structure as in the above Figure (File System for Challenge Questions), if <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">pwd</code> displays <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">/Users/backup</code>, and <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">-r</code> tells ls to display things in reverse order, what command will display:</p>
-<div class="highlight"><pre><span></span>pnas_sub/<span class="w"> </span>pnas_final/<span class="w"> </span>original/
+<h2 id="Our-First-Command">Our First Command<a class="anchor-link" href="#Our-First-Command">&#182;</a></h2><p>You should be able to recognise your username in the command prompt (prefixed with a <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">jupyter-</code> as that is your username on this server), but lets check who we are by running our first command.</p>
+<p>Type <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">whoami</code> into the terminal and press the enter key:</p>
+<div class="highlight"><pre><span></span>jupyter-user<span class="nv">$whoami</span>
 </pre></div>
+<p>Your username <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">jupyter-bath_username</code> should have been written to the terminal, and the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">command prompt</code> should have returned.</p>
+<p><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">whoami</code> is a simple program that outputs the ID of the current user, i.e. it tells us who the shell thinks we are. When we typed the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">whoami</code> command the shell:</p>
 <ol>
-<li><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls pwd</code></li>
-<li><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls -r -F</code></li>
-<li><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls -r -F /Users/backup</code></li>
-<li>Either #2 or #3 above, but not #1.</li>
+<li>Finds a program called <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">whoami</code></li>
+<li>Runs the program <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">whoami</code></li>
+<li>Displays the program's output</li>
+<li>Displays a new command prompt to tell us it's ready for more commands</li>
 </ol>
-<p><a href="./02_introducing_the_shell-soln.html#-ls-Reading-Comprehension%20">Solution</a></p>
-</div>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-
+<div class="w3-panel w3-leftbar w3-border-yellow w3-pale-yellow w3-padding-small">
+    <h3 id="-whoareyou%20"><i class="fa fa-pencil-square-o"></i> whoareyou
+</h3>
+    <p>What happens when you try the command <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">whoareyou</code>?</p>
+<div class="highlight"><pre><span></span>username@rss-dev-jh-rss-vm:~<span class="nv">$whoareyou</span>
+</pre></div>
+<p><a href="./02_introducing_the_shell-soln.html#-whoareyou%20">Solution</a></p>
+</div>
 </div>
 </div>
 </div>
