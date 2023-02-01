@@ -3,7 +3,7 @@
 <head><meta charset="utf-8" />
 <link rel="icon" type="image/png" href="css/favicon.png"/>
 
-<title>02_introducing_the_shell</title>
+<title>03_navigatingFD-soln</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -13093,29 +13093,17 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Introducing-the-Shell">Introducing the Shell<a class="anchor-link" href="#Introducing-the-Shell">&#182;</a></h1>
+<h1 id="Solutions">Solutions<a class="anchor-link" href="#Solutions">&#182;</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<div class="w3-panel w3-leftbar w3-border-green w3-pale-green w3-padding-small">
-    <h3 id="-Overview%3A%20"><i class="fa fa-file-o"></i> Overview:
+<div class="w3-panel w3-leftbar w3-border-blue w3-pale-blue w3-padding-small">
+    <h3 id="-Exploring-More-ls-Flags%20"><i class="fa fa-eye"></i> Exploring More ls Flags
 </h3>
-    <ul>
-<li><strong>Teaching:</strong> 5 min</li>
-<li><strong>Exercises:</strong> 0 min</li>
-</ul>
-<p><strong>Questions</strong></p>
-<ul>
-<li>What is a command shell and why would I use one?</li>
-</ul>
-<p><strong>Objectives</strong></p>
-<ul>
-<li>Explain how the shell relates to the keyboard, the screen, the operating system, and users’ programs.</li>
-<li>Explain when and why command-line interfaces should be used instead of graphical interfaces.</li>
-</ul>
+    <p>The <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">-l</code> flag makes <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls</code> use a long listing format, showing not only the file/directory names but also additional information such as the file size and the time of its last modification. The <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">-h</code> flag makes the file size "human readable", i.e. display something like <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">5.3K</code> instead of <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">5369</code>.</p>
 </div>
 </div>
 </div>
@@ -13123,61 +13111,10 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Background">Background<a class="anchor-link" href="#Background">&#182;</a></h2><p>At a high level, computers do four things:</p>
-<ul>
-<li>run programs</li>
-<li>store data</li>
-<li>communicate with each other, and</li>
-<li>interact with us</li>
-</ul>
-<p>They can do the last of these in many different ways, including through a keyboard and mouse, or touch screen interfaces, or speech recognition using systems. While such hardware interfaces are becoming more commonplace, most interaction is still done using screens, mice, touchpads and keyboards.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="GUI-vs-CLI">GUI vs CLI<a class="anchor-link" href="#GUI-vs-CLI">&#182;</a></h2><p><img src="./images/02/git-cli-hero.png" alt="Create new notebook"></p>
-<p>We are all familiar with <strong>graphical user interfaces</strong> (GUI): windows, icons and pointers. They are easy to learn and fantastic for simple tasks where a vocabulary consisting of "click" translates easily into "do the thing I want". But this magic relies on wanting a simple set of things, and having programs that can do exactly those things.</p>
-<p>If you wish to do complex, purpose-specific things it helps to have a richer means of expressing your instructions to the computer. It doesn't need to be complicated or difficult, just a vocabulary of commands and a simple grammar for using them.</p>
-<p>This is what the shell provides - a simple language and a <strong>command-line</strong> interface to use it through.</p>
-<p>The heart of a command-line interface is a <strong>read-evaluate-print loop</strong> (REPL) called so because when you type a command and press <Return>. The shell reads it, executes (or "evaluates" it), prints the output, prints the prompt and waits for you to enter another command.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="The-Shell">The Shell<a class="anchor-link" href="#The-Shell">&#182;</a></h2><p>This description makes it sound as though the user sends commands directly to the computer, and the computer sends output directly to the user. In fact, there is usually a program in between called a <strong>command shell</strong>. What the user types goes into the shell, which then figures out what commands to run and orders the computer to execute them. (Note that the shell is called “the shell” because it encloses the operating system in order to hide some of its complexity and make it simpler to interact with.)</p>
-<p>A shell is a program like any other. What's special about it is that its job is to run other programs rather than to do calculations itself. The most popular Unix shell is Bash, the Bourne Again SHell (so-called because it's derived from a shell written by Stephen Bourne). Bash is the default shell on most modern implementations of Unix and in most packages that provide Unix-like tools for Windows.</p>
-<h3 id="Is-it-difficult?">Is it difficult?<a class="anchor-link" href="#Is-it-difficult?">&#182;</a></h3><p>It is a different model of interacting than a GUI, and that will take some effort - and some time - to learn. A GUI presents you with choices and you select one. With a <strong>command line interface</strong> (CLI) the choices are combinations of commands and parameters, more like words in a language than buttons on a screen. They are not presented to you so you must learn a few, like learning some vocabulary in a new language. But a small number of commands gets you a long way, and we'll cover those essential few today.</p>
-<h3 id="Flexibility-and-automation">Flexibility and automation<a class="anchor-link" href="#Flexibility-and-automation">&#182;</a></h3><p>The grammar of a shell allows you to combine existing tools into powerful pipelines and handle large volumes of data automatically. Sequences of commands can be written into a script, improving the reproducibility of workflows.</p>
-<p>In addition, the command line is often the easiest way to interact with remote machines and supercomputers. Familiarity with the shell is near essential to run a variety of specialized tools and resources including high-performance computing systems. As clusters and cloud computing systems become more popular for scientific data crunching, being able to interact with the shell is becoming a necessary skill. We can build on the command-line skills covered here to tackle a wide range of scientific questions and computational challenges.</p>
-<p>Let’s get started.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>When the shell is first opened, you are presented with a prompt, indicating that the shell is waiting for input:</p>
-<div class="highlight"><pre><span></span>jupyter-user:~$
-</pre></div>
-<p>The shell typically uses <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">$</code> as the prompt, typically with some information in front of it (in our case the username), but may use a different symbol. In the examples for this lesson, we’ll show the prompt as:</p>
-<div class="highlight"><pre><span></span>jupyter-user:~$
-</pre></div>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div class="alert alert-block alert-info">
-<b>Important:</b> When typing commands, either from these lessons or from other sources, do not type the prompt, only the commands that follow it. Also note that after you type a command, you have to press the Enter key to execute it.
+<div class="w3-panel w3-leftbar w3-border-blue w3-pale-blue w3-padding-small">
+    <h3 id="-Listing-Recursively-and-By-Time%20"><i class="fa fa-eye"></i> Listing Recursively and By Time
+</h3>
+    <p>The files/directories in each directory are sorted by time of last change.</p>
 </div>
 </div>
 </div>
@@ -13185,32 +13122,36 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Our-First-Command">Our First Command<a class="anchor-link" href="#Our-First-Command">&#182;</a></h2><p>You should be able to recognise your username in the command prompt (prefixed with a <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">jupyter-</code> as that is your username on this server), but lets check who we are by running our first command.</p>
-<p>Type <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">whoami</code> into the terminal and press the enter key:</p>
-<div class="highlight"><pre><span></span>jupyter-user:~<span class="nv">$whoami</span>
-</pre></div>
-<p>Your server username <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">jupyter-&lt;bathusername&gt;</code> should have been written to the terminal, and the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">command prompt</code> should have returned.</p>
-<p><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">whoami</code> is a simple program that outputs the ID of the current user, i.e. it tells us who the shell thinks we are. When we typed the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">whoami</code> command the shell:</p>
-<ol>
-<li>Finds a program called <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">whoami</code></li>
-<li>Runs the program <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">whoami</code></li>
-<li>Displays the program's output</li>
-<li>Displays a new command prompt to tell us it's ready for more commands</li>
+<div class="w3-panel w3-leftbar w3-border-blue w3-pale-blue w3-padding-small">
+    <h3 id="-Absolute-vs-Relative-Paths%20"><i class="fa fa-eye"></i> Absolute vs Relative Paths
+</h3>
+    <ol>
+<li>No: <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">.</code> stands for the current directory.</li>
+<li>No: <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">/</code> stands for the root directory.</li>
+<li>No: Amanda's home directory is <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">/Users/amanda</code>.</li>
+<li>No: this goes up two levels, i.e. ends in <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">/Users</code>.</li>
+<li>Yes: <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">~</code> stands for the user's home directory, in this case <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">/Users/amanda</code>.</li>
+<li>No: this would navigate into a directory home in the current directory if it exists.</li>
+<li>Yes: unnecessarily complicated, but correct.</li>
+<li>Yes: shortcut to go back to the user's home directory.</li>
+<li>Yes: goes up one level.</li>
 </ol>
-
+</div>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<div class="w3-panel w3-leftbar w3-border-yellow w3-pale-yellow w3-padding-small">
-    <h3 id="-whoareyou%20"><i class="fa fa-pencil-square-o"></i> whoareyou
+<div class="w3-panel w3-leftbar w3-border-blue w3-pale-blue w3-padding-small">
+    <h3 id="-Relative-Path-Resolution%20"><i class="fa fa-eye"></i> Relative Path Resolution
 </h3>
-    <p>What happens when you try the command <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">whoareyou</code>?</p>
-<div class="highlight"><pre><span></span>jupyter-user:~<span class="nv">$whoareyou</span>
-</pre></div>
-<p><a href="./02_introducing_the_shell-soln.html#-whoareyou%20">Solution</a></p>
+    <ol>
+<li>No: there is a directory backup in <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">/Users</code>.</li>
+<li>No: this is the content of <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">Users/thing/backup</code>, but with <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">..</code> we asked for one level further up.</li>
+<li>No: see previous explanation.</li>
+<li>Yes: <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">../backup/</code> refers to <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">/Users/backup/</code>.</li>
+</ol>
 </div>
 </div>
 </div>
@@ -13218,46 +13159,15 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Nelle's-Pipeline:-A-Typical-Problem">Nelle's Pipeline: A Typical Problem<a class="anchor-link" href="#Nelle's-Pipeline:-A-Typical-Problem">&#182;</a></h2><p>Nelle Nemo, a marine biologist, has just returned from a six-month survey of the North Pacific Gyre, where she has been sampling gelatinous marine life in the Great Pacific Garbage Patch. She has 1520 samples that she’s run through an assay machine to measure the relative abundance of 300 proteins. She needs to run these 1520 files through an imaginary program called goostats.sh she inherited. On top of this huge task, she has to write up results by the end of the month so her paper can appear in a special issue of Aquatic Goo Letters.</p>
-<p>The bad news is that if she has to run goostats.sh by hand using a GUI, she’ll have to select and open a file 1520 times. If goostats.sh takes 30 seconds to run each file, the whole process will take more than 12 hours of Nelle’s attention. With the shell, Nelle can instead assign her computer this mundane task while she focuses her attention on writing her paper.</p>
-<p>The next few lessons will explore the ways Nelle can achieve this. More specifically, they explain how she can use a command shell to run the goostats.sh program, using loops to automate the repetitive steps of entering file names, so that her computer can work while she writes her paper.</p>
-<p>As a bonus, once she has put a processing pipeline together, she will be able to use it again whenever she collects more data.</p>
-<p>In order to achieve her task, Nelle needs to know how to:</p>
-<ul>
-<li>navigate to a file/directory</li>
-<li>create a file/directory</li>
-<li>check the length of a file</li>
-<li>chain commands together</li>
-<li>retrieve a set of files</li>
-<li>iterate over files</li>
-<li>run a shell script containing her pipeline</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div class="w3-panel w3-leftbar w3-border-green w3-pale-green w3-padding-small">
-    <h3 id="-Key-Points%3A%20"><i class="fa fa-key"></i> Key Points:
+<div class="w3-panel w3-leftbar w3-border-blue w3-pale-blue w3-padding-small">
+    <h3 id="-ls-Reading-Comprehension%20"><i class="fa fa-eye"></i> <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls</code> Reading Comprehension
 </h3>
-    <ul>
-<li>A shell is a program whose primary purpose is to read commands and run other programs.</li>
-<li>The shell's main advantages are its high action-to-keystroke ratio, its support for automating repetitive tasks, and its capacity to access networked machines.</li>
-<li>The shell's main disadvantages are its primarily textual nature and how cryptic its commands and operation can be.</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div class="w3-bar w3-blue-grey">
-<a href="./01_getting_setup.html" class="w3-left-align w3-bar-item w3-button w3-mobile" style="width:33%"><h2><i class="fa fa-angle-double-left"></i> Previous</h2></a>
-<a href="./00_schedule.html" class="w3-bar-item w3-button w3-center w3-mobile" style="width:33%"><h2>Schedule</h2></a>
-<a href="./03_navigatingFD.html" class="w3-right-align w3-bar-item w3-button w3-right w3-mobile" style="width:33%"><h2>Next <i class="fa fa-angle-double-right"></i></h2></a>
+    <ol>
+<li>No: <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">pwd</code> is not the name of a directory.</li>
+<li>Yes: <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls</code> without directory argument lists files and directories in the current directory.</li>
+<li>Yes: uses the absolute path explicitly.</li>
+<li>Correct: see explanations above.</li>
+</ol>
 </div>
 </div>
 </div>
