@@ -13279,460 +13279,71 @@ IntroShell/<span class="w">  </span>Welcome.ipynb@<span class="w">  </span>cours
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="The---help-flag">The <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">--help</code> flag<a class="anchor-link" href="#The---help-flag">&#182;</a></h3><p>Many bash commands, and programs that people have written that can be run from within bash, support a <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">--help</code> flag to display more information on how to use the command or program.</p>
+<h3 id="The---help-flag">The <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">--help</code> flag<a class="anchor-link" href="#The---help-flag">&#182;</a></h3><p>Many bash commands, and programs that people have written that can be run from within bash, support a <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">--help</code> flag to display more information on how to use the command or program:</p>
+<div class="highlight"><pre><span></span>jupyter-user:~<span class="nv">$ls</span><span class="w"> </span>--help
+Usage:<span class="w"> </span>ls<span class="w"> </span><span class="o">[</span>OPTION<span class="o">]</span>...<span class="w"> </span><span class="o">[</span>FILE<span class="o">]</span>...
+List<span class="w"> </span>information<span class="w"> </span>about<span class="w"> </span>the<span class="w"> </span>FILEs<span class="w"> </span><span class="o">(</span>the<span class="w"> </span>current<span class="w"> </span>directory<span class="w"> </span>by<span class="w"> </span>default<span class="o">)</span>.
+Sort<span class="w"> </span>entries<span class="w"> </span>alphabetically<span class="w"> </span><span class="k">if</span><span class="w"> </span>none<span class="w"> </span>of<span class="w"> </span>-cftuvSUX<span class="w"> </span>nor<span class="w"> </span>--sort<span class="w"> </span>is<span class="w"> </span>specified.
 
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">bash2</span>
-ls --help
+Mandatory<span class="w"> </span>arguments<span class="w"> </span>to<span class="w"> </span>long<span class="w"> </span>options<span class="w"> </span>are<span class="w"> </span>mandatory<span class="w"> </span><span class="k">for</span><span class="w"> </span>short<span class="w"> </span>options<span class="w"> </span>too.
+<span class="w">  </span>-a,<span class="w"> </span>--all<span class="w">                  </span><span class="k">do</span><span class="w"> </span>not<span class="w"> </span>ignore<span class="w"> </span>entries<span class="w"> </span>starting<span class="w"> </span>with<span class="w"> </span>.
+<span class="w">  </span>-A,<span class="w"> </span>--almost-all<span class="w">           </span><span class="k">do</span><span class="w"> </span>not<span class="w"> </span>list<span class="w"> </span>implied<span class="w"> </span>.<span class="w"> </span>and<span class="w"> </span>..
+<span class="w">      </span>--author<span class="w">               </span>with<span class="w"> </span>-l,<span class="w"> </span>print<span class="w"> </span>the<span class="w"> </span>author<span class="w"> </span>of<span class="w"> </span>each<span class="w"> </span>file
+<span class="w">  </span>-b,<span class="w"> </span>--escape<span class="w">               </span>print<span class="w"> </span>C-style<span class="w"> </span>escapes<span class="w"> </span><span class="k">for</span><span class="w"> </span>nongraphic<span class="w"> </span>characters
+<span class="w">      </span>--block-size<span class="o">=</span>SIZE<span class="w">      </span>scale<span class="w"> </span>sizes<span class="w"> </span>by<span class="w"> </span>SIZE<span class="w"> </span>before<span class="w"> </span>printing<span class="w"> </span>them<span class="p">;</span><span class="w"> </span>e.g.,
+<span class="w">                               </span><span class="s1">&#39;--block-size=M&#39;</span><span class="w"> </span>prints<span class="w"> </span>sizes<span class="w"> </span><span class="k">in</span><span class="w"> </span>units<span class="w"> </span>of
+<span class="w">                               </span><span class="m">1</span>,048,576<span class="w"> </span>bytes<span class="p">;</span><span class="w"> </span>see<span class="w"> </span>SIZE<span class="w"> </span>format<span class="w"> </span>below
+<span class="w">  </span>-B,<span class="w"> </span>--ignore-backups<span class="w">       </span><span class="k">do</span><span class="w"> </span>not<span class="w"> </span>list<span class="w"> </span>implied<span class="w"> </span>entries<span class="w"> </span>ending<span class="w"> </span>with<span class="w"> </span>~
+<span class="w">  </span>-c<span class="w">                         </span>with<span class="w"> </span>-lt:<span class="w"> </span>sort<span class="w"> </span>by,<span class="w"> </span>and<span class="w"> </span>show,<span class="w"> </span>ctime<span class="w"> </span><span class="o">(</span><span class="nb">time</span><span class="w"> </span>of<span class="w"> </span>last
+<span class="w">                               </span>modification<span class="w"> </span>of<span class="w"> </span>file<span class="w"> </span>status<span class="w"> </span>information<span class="o">)</span><span class="p">;</span>
+<span class="w">                               </span>with<span class="w"> </span>-l:<span class="w"> </span>show<span class="w"> </span>ctime<span class="w"> </span>and<span class="w"> </span>sort<span class="w"> </span>by<span class="w"> </span>name<span class="p">;</span>
+<span class="w">                               </span>otherwise:<span class="w"> </span>sort<span class="w"> </span>by<span class="w"> </span>ctime,<span class="w"> </span>newest<span class="w"> </span>first
+...
+...
+...
 </pre></div>
 
-    </div>
 </div>
 </div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Usage: ls [OPTION]... [FILE]...
-List information about the FILEs (the current directory by default).
-Sort entries alphabetically if none of -cftuvSUX nor --sort is specified.
-
-Mandatory arguments to long options are mandatory for short options too.
-  -a, --all                  do not ignore entries starting with .
-  -A, --almost-all           do not list implied . and ..
-      --author               with -l, print the author of each file
-  -b, --escape               print C-style escapes for nongraphic characters
-      --block-size=SIZE      scale sizes by SIZE before printing them; e.g.,
-                               &#39;--block-size=M&#39; prints sizes in units of
-                               1,048,576 bytes; see SIZE format below
-  -B, --ignore-backups       do not list implied entries ending with ~
-  -c                         with -lt: sort by, and show, ctime (time of last
-                               modification of file status information);
-                               with -l: show ctime and sort by name;
-                               otherwise: sort by ctime, newest first
-  -C                         list entries by columns
-      --color[=WHEN]         colorize the output; WHEN can be &#39;always&#39; (default
-                               if omitted), &#39;auto&#39;, or &#39;never&#39;; more info below
-  -d, --directory            list directories themselves, not their contents
-  -D, --dired                generate output designed for Emacs&#39; dired mode
-  -f                         do not sort, enable -aU, disable -ls --color
-  -F, --classify             append indicator (one of */=&gt;@|) to entries
-      --file-type            likewise, except do not append &#39;*&#39;
-      --format=WORD          across -x, commas -m, horizontal -x, long -l,
-                               single-column -1, verbose -l, vertical -C
-      --full-time            like -l --time-style=full-iso
-  -g                         like -l, but do not list owner
-      --group-directories-first
-                             group directories before files;
-                               can be augmented with a --sort option, but any
-                               use of --sort=none (-U) disables grouping
-  -G, --no-group             in a long listing, don&#39;t print group names
-  -h, --human-readable       with -l and/or -s, print human readable sizes
-                               (e.g., 1K 234M 2G)
-      --si                   likewise, but use powers of 1000 not 1024
-  -H, --dereference-command-line
-                             follow symbolic links listed on the command line
-      --dereference-command-line-symlink-to-dir
-                             follow each command line symbolic link
-                               that points to a directory
-      --hide=PATTERN         do not list implied entries matching shell PATTERN
-                               (overridden by -a or -A)
-      --indicator-style=WORD  append indicator with style WORD to entry names:
-                               none (default), slash (-p),
-                               file-type (--file-type), classify (-F)
-  -i, --inode                print the index number of each file
-  -I, --ignore=PATTERN       do not list implied entries matching shell PATTERN
-  -k, --kibibytes            default to 1024-byte blocks for disk usage
-  -l                         use a long listing format
-  -L, --dereference          when showing file information for a symbolic
-                               link, show information for the file the link
-                               references rather than for the link itself
-  -m                         fill width with a comma separated list of entries
-  -n, --numeric-uid-gid      like -l, but list numeric user and group IDs
-  -N, --literal              print raw entry names (don&#39;t treat e.g. control
-                               characters specially)
-  -o                         like -l, but do not list group information
-  -p, --indicator-style=slash
-                             append / indicator to directories
-  -q, --hide-control-chars   print ? instead of nongraphic characters
-      --show-control-chars   show nongraphic characters as-is (the default,
-                               unless program is &#39;ls&#39; and output is a terminal)
-  -Q, --quote-name           enclose entry names in double quotes
-      --quoting-style=WORD   use quoting style WORD for entry names:
-                               literal, locale, shell, shell-always,
-                               shell-escape, shell-escape-always, c, escape
-  -r, --reverse              reverse order while sorting
-  -R, --recursive            list subdirectories recursively
-  -s, --size                 print the allocated size of each file, in blocks
-  -S                         sort by file size, largest first
-      --sort=WORD            sort by WORD instead of name: none (-U), size (-S),
-                               time (-t), version (-v), extension (-X)
-      --time=WORD            with -l, show time as WORD instead of default
-                               modification time: atime or access or use (-u);
-                               ctime or status (-c); also use specified time
-                               as sort key if --sort=time (newest first)
-      --time-style=STYLE     with -l, show times using style STYLE:
-                               full-iso, long-iso, iso, locale, or +FORMAT;
-                               FORMAT is interpreted like in &#39;date&#39;; if FORMAT
-                               is FORMAT1&lt;newline&gt;FORMAT2, then FORMAT1 applies
-                               to non-recent files and FORMAT2 to recent files;
-                               if STYLE is prefixed with &#39;posix-&#39;, STYLE
-                               takes effect only outside the POSIX locale
-  -t                         sort by modification time, newest first
-  -T, --tabsize=COLS         assume tab stops at each COLS instead of 8
-  -u                         with -lt: sort by, and show, access time;
-                               with -l: show access time and sort by name;
-                               otherwise: sort by access time, newest first
-  -U                         do not sort; list entries in directory order
-  -v                         natural sort of (version) numbers within text
-  -w, --width=COLS           set output width to COLS.  0 means no limit
-  -x                         list entries by lines instead of by columns
-  -X                         sort alphabetically by entry extension
-  -Z, --context              print any security context of each file
-  -1                         list one file per line.  Avoid &#39;\n&#39; with -q or -b
-      --help     display this help and exit
-      --version  output version information and exit
-
-The SIZE argument is an integer and optional unit (example: 10K is 10*1024).
-Units are K,M,G,T,P,E,Z,Y (powers of 1024) or KB,MB,... (powers of 1000).
-
-Using color to distinguish file types is disabled both by default and
-with --color=never.  With --color=auto, ls emits color codes only when
-standard output is connected to a terminal.  The LS_COLORS environment
-variable can change the settings.  Use the dircolors command to set it.
-
-Exit status:
- 0  if OK,
- 1  if minor problems (e.g., cannot access subdirectory),
- 2  if serious trouble (e.g., cannot access command-line argument).
-
-GNU coreutils online help: &lt;http://www.gnu.org/software/coreutils/&gt;
-Full documentation at: &lt;http://www.gnu.org/software/coreutils/ls&gt;
-or available locally via: info &#39;(coreutils) ls invocation&#39;
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<div class="w3-panel w3-leftbar w3-border-blue w3-pale-blue w3-padding-small">
-    <h3 id="-Unsupported-command-line-options%20"><i class="fa fa-info-circle"></i> Unsupported command-line options
-</h3>
-    <p>If you try to use an option (flag) that is not supported, <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls</code> and other programs will usually print an error message similar to:</p>
-<div class="highlight"><pre><span></span>ls<span class="w"> </span>-j
-ls:<span class="w"> </span>invalid<span class="w"> </span>option<span class="w"> </span>--<span class="w"> </span><span class="s1">&#39;j&#39;</span>
-Try<span class="w"> </span><span class="s1">&#39;ls --help&#39;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>more<span class="w"> </span>information.
-</pre></div>
-<p>.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">bash2</span>
-ls -j
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="The-man-command">The <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">man</code> command<a class="anchor-link" href="#The-man-command">&#182;</a></h3><p>The other way to learn about ls is to type</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">bash2</span>
-man ls
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>LS(1)                            User Commands                           LS(1)
+<h3 id="The-man-command">The <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">man</code> command<a class="anchor-link" href="#The-man-command">&#182;</a></h3><p>The other way to learn about ls is to type:</p>
+<div class="highlight"><pre><span></span>jupyter-user:~<span class="nv">$man</span><span class="w"> </span>ls
+LS<span class="o">(</span><span class="m">1</span><span class="o">)</span><span class="w">                                                </span>User<span class="w"> </span>Commands<span class="w">                                                </span>LS<span class="o">(</span><span class="m">1</span><span class="o">)</span>
 
 NAME
-       ls - list directory contents
+<span class="w">       </span>ls<span class="w"> </span>-<span class="w"> </span>list<span class="w"> </span>directory<span class="w"> </span>contents
 
 SYNOPSIS
-       ls [OPTION]... [FILE]...
+<span class="w">       </span>ls<span class="w"> </span><span class="o">[</span>OPTION<span class="o">]</span>...<span class="w"> </span><span class="o">[</span>FILE<span class="o">]</span>...
 
 DESCRIPTION
-       List  information  about  the FILEs (the current directory by default).
-       Sort entries alphabetically if none of -cftuvSUX nor --sort  is  speci‐
-       fied.
-
-       Mandatory  arguments  to  long  options are mandatory for short options
-       too.
-
-       -a, --all
-              do not ignore entries starting with .
-
-       -A, --almost-all
-              do not list implied . and ..
-
-       --author
-              with -l, print the author of each file
-
-       -b, --escape
-              print C-style escapes for nongraphic characters
-
-       --block-size=SIZE
-              scale sizes by SIZE before printing them; e.g., &#39;--block-size=M&#39;
-              prints sizes in units of 1,048,576 bytes; see SIZE format below
-
-       -B, --ignore-backups
-              do not list implied entries ending with ~
-
-       -c     with -lt: sort by, and show, ctime (time of last modification of
-              file status information); with -l: show ctime and sort by  name;
-              otherwise: sort by ctime, newest first
-
-       -C     list entries by columns
-
-       --color[=WHEN]
-              colorize  the output; WHEN can be &#39;always&#39; (default if omitted),
-              &#39;auto&#39;, or &#39;never&#39;; more info below
-
-       -d, --directory
-              list directories themselves, not their contents
-
-       -D, --dired
-              generate output designed for Emacs&#39; dired mode
-
-       -f     do not sort, enable -aU, disable -ls --color
-
-       -F, --classify
-              append indicator (one of */=&gt;@|) to entries
-
-       --file-type
-              likewise, except do not append &#39;*&#39;
-
-       --format=WORD
-              across -x, commas -m, horizontal -x, long -l, single-column  -1,
-              verbose -l, vertical -C
-
-       --full-time
-              like -l --time-style=full-iso
-
-       -g     like -l, but do not list owner
-
-       --group-directories-first
-              group directories before files;
-
-              can   be  augmented  with  a  --sort  option,  but  any  use  of
-              --sort=none (-U) disables grouping
-
-       -G, --no-group
-              in a long listing, don&#39;t print group names
-
-       -h, --human-readable
-              with -l and/or -s, print human readable sizes (e.g., 1K 234M 2G)
-
-       --si   likewise, but use powers of 1000 not 1024
-
-       -H, --dereference-command-line
-              follow symbolic links listed on the command line
-
-       --dereference-command-line-symlink-to-dir
-              follow each command line symbolic link
-
-              that points to a directory
-
-       --hide=PATTERN
-              do not list implied entries matching shell  PATTERN  (overridden
-              by -a or -A)
-
-       --indicator-style=WORD
-              append indicator with style WORD to entry names: none (default),
-              slash (-p), file-type (--file-type), classify (-F)
-
-       -i, --inode
-              print the index number of each file
-
-       -I, --ignore=PATTERN
-              do not list implied entries matching shell PATTERN
-
-       -k, --kibibytes
-              default to 1024-byte blocks for disk usage
-
-       -l     use a long listing format
-
-       -L, --dereference
-              when showing file information for a symbolic link, show informa‐
-              tion  for  the file the link references rather than for the link
-              itself
-
-       -m     fill width with a comma separated list of entries
-
-       -n, --numeric-uid-gid
-              like -l, but list numeric user and group IDs
-
-       -N, --literal
-              print raw entry names (don&#39;t treat e.g. control characters  spe‐
-              cially)
-
-       -o     like -l, but do not list group information
-
-       -p, --indicator-style=slash
-              append / indicator to directories
-
-       -q, --hide-control-chars
-              print ? instead of nongraphic characters
-
-       --show-control-chars
-              show nongraphic characters as-is (the default, unless program is
-              &#39;ls&#39; and output is a terminal)
-
-       -Q, --quote-name
-              enclose entry names in double quotes
-
-       --quoting-style=WORD
-              use quoting style WORD for entry names: literal, locale,  shell,
-              shell-always, shell-escape, shell-escape-always, c, escape
-
-       -r, --reverse
-              reverse order while sorting
-
-       -R, --recursive
-              list subdirectories recursively
-
-       -s, --size
-              print the allocated size of each file, in blocks
-
-       -S     sort by file size, largest first
-
-       --sort=WORD
-              sort  by  WORD instead of name: none (-U), size (-S), time (-t),
-              version (-v), extension (-X)
-
-       --time=WORD
-              with -l, show time as WORD instead of default modification time:
-              atime  or  access  or  use  (-u); ctime or status (-c); also use
-              specified time as sort key if --sort=time (newest first)
-
-       --time-style=STYLE
-              with -l, show times using style STYLE: full-iso, long-iso,  iso,
-              locale,  or  +FORMAT;  FORMAT  is interpreted like in &#39;date&#39;; if
-              FORMAT  is  FORMAT1&lt;newline&gt;FORMAT2,  then  FORMAT1  applies  to
-              non-recent  files  and FORMAT2 to recent files; if STYLE is pre‐
-              fixed with &#39;posix-&#39;, STYLE takes effect only outside  the  POSIX
-              locale
-
-       -t     sort by modification time, newest first
-
-       -T, --tabsize=COLS
-              assume tab stops at each COLS instead of 8
-
-       -u     with  -lt:  sort by, and show, access time; with -l: show access
-              time and sort by name; otherwise: sort by  access  time,  newest
-              first
-
-       -U     do not sort; list entries in directory order
-
-       -v     natural sort of (version) numbers within text
-
-       -w, --width=COLS
-              set output width to COLS.  0 means no limit
-
-       -x     list entries by lines instead of by columns
-
-       -X     sort alphabetically by entry extension
-
-       -Z, --context
-              print any security context of each file
-
-       -1     list one file per line.  Avoid &#39;\n&#39; with -q or -b
-
-       --help display this help and exit
-
-       --version
-              output version information and exit
-
-       The  SIZE  argument  is  an  integer and optional unit (example: 10K is
-       10*1024).  Units are K,M,G,T,P,E,Z,Y  (powers  of  1024)  or  KB,MB,...
-       (powers of 1000).
-
-       Using  color  to distinguish file types is disabled both by default and
-       with --color=never.  With --color=auto, ls emits color codes only  when
-       standard  output is connected to a terminal.  The LS_COLORS environment
-       variable can change the settings.  Use the dircolors command to set it.
-
-   Exit status:
-       0      if OK,
-
-       1      if minor problems (e.g., cannot access subdirectory),
-
-       2      if serious trouble (e.g., cannot access command-line argument).
-
-AUTHOR
-       Written by Richard M. Stallman and David MacKenzie.
-
-REPORTING BUGS
-       GNU coreutils online help: &lt;http://www.gnu.org/software/coreutils/&gt;
-       Report ls translation bugs to &lt;http://translationproject.org/team/&gt;
-
-COPYRIGHT
-       Copyright © 2016 Free Software Foundation, Inc.   License  GPLv3+:  GNU
-       GPL version 3 or later &lt;http://gnu.org/licenses/gpl.html&gt;.
-       This  is  free  software:  you  are free to change and redistribute it.
-       There is NO WARRANTY, to the extent permitted by law.
-
-SEE ALSO
-       Full documentation at: &lt;http://www.gnu.org/software/coreutils/ls&gt;
-       or available locally via: info &#39;(coreutils) ls invocation&#39;
-
-GNU coreutils 8.25               February 2017                           LS(1)
-</pre>
-</div>
-</div>
+<span class="w">       </span>List<span class="w">  </span>information<span class="w">  </span>about<span class="w">  </span>the<span class="w">  </span>FILEs<span class="w"> </span><span class="o">(</span>the<span class="w"> </span>current<span class="w"> </span>directory<span class="w"> </span>by<span class="w"> </span>default<span class="o">)</span>.<span class="w">  </span>Sort<span class="w"> </span>entries<span class="w"> </span>alphabetically<span class="w"> </span><span class="k">if</span><span class="w"> </span>none<span class="w"> </span>of
+<span class="w">       </span>-cftuvSUX<span class="w"> </span>nor<span class="w"> </span>--sort<span class="w"> </span>is<span class="w"> </span>specified.
+
+<span class="w">       </span>Mandatory<span class="w"> </span>arguments<span class="w"> </span>to<span class="w"> </span>long<span class="w"> </span>options<span class="w"> </span>are<span class="w"> </span>mandatory<span class="w"> </span><span class="k">for</span><span class="w"> </span>short<span class="w"> </span>options<span class="w"> </span>too.
+
+<span class="w">       </span>-a,<span class="w"> </span>--all
+<span class="w">              </span><span class="k">do</span><span class="w"> </span>not<span class="w"> </span>ignore<span class="w"> </span>entries<span class="w"> </span>starting<span class="w"> </span>with<span class="w"> </span>.
+
+<span class="w">       </span>-A,<span class="w"> </span>--almost-all
+<span class="w">              </span><span class="k">do</span><span class="w"> </span>not<span class="w"> </span>list<span class="w"> </span>implied<span class="w"> </span>.<span class="w"> </span>and<span class="w"> </span>..
+
+<span class="w">       </span>--author
+<span class="w">              </span>with<span class="w"> </span>-l,<span class="w"> </span>print<span class="w"> </span>the<span class="w"> </span>author<span class="w"> </span>of<span class="w"> </span>each<span class="w"> </span>file
+
+<span class="w">       </span>-b,<span class="w"> </span>--escape
+<span class="w">              </span>print<span class="w"> </span>C-style<span class="w"> </span>escapes<span class="w"> </span><span class="k">for</span><span class="w"> </span>nongraphic<span class="w"> </span>characters
+...
+...
+...
+</pre></div>
+<p><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">man</code> is a command that will display the manual with more information for a command/program if it is present.</p>
 
 </div>
 </div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -13753,6 +13364,15 @@ GNU coreutils 8.25               February 2017                           LS(1)
     <p>Of course there is a third way to access help for commands: searching the internet via your web browser. When using internet search, including the phrase <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">unix man page</code> in your search query will help to find relevant results.</p>
 <p>GNU provides links to its <a href="http://www.gnu.org/manual/manual.html">manuals</a> including the <a href="http://www.gnu.org/software/coreutils/manual/coreutils.html">core GNU utilities</a>, which covers many commands introduced within this lesson.</p>
 </div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Excercise:-ls-options">Excercise: ls options<a class="anchor-link" href="#Excercise:-ls-options">&#182;</a></h2><p>inspect the manual, or the output from <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls --help</code> and issue a flag to <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls</code> that isnt listed. What happens?</p>
+<p><a href="">Solution</a></p>
+
 </div>
 </div>
 </div>
