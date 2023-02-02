@@ -3,7 +3,7 @@
 <head><meta charset="utf-8" />
 <link rel="icon" type="image/png" href="css/favicon.png"/>
 
-<title>05_pipesNfilters</title>
+<title>06_loops</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -13093,7 +13093,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Pipes-and-filters">Pipes and filters<a class="anchor-link" href="#Pipes-and-filters">&#182;</a></h1>
+<h1 id="Loops">Loops<a class="anchor-link" href="#Loops">&#182;</a></h1>
 </div>
 </div>
 </div>
@@ -13104,19 +13104,21 @@ div#notebook {
     <h3 id="-Overview%3A%20"><i class="fa fa-file-o"></i> Overview:
 </h3>
     <ul>
-<li><strong>Teaching:</strong>  25 min</li>
+<li><strong>Teaching:</strong>  40 min</li>
 <li><strong>Exercises:</strong> 10 min</li>
 </ul>
 <p><strong>Questions</strong></p>
 <ul>
-<li>How can I combine existing commands to do new things?</li>
+<li>How can I perform the same actions on many different files?</li>
 </ul>
 <p><strong>Objectives</strong></p>
 <ul>
-<li>Redirect a command’s output to a file.</li>
-<li>Construct command pipelines with two or more stages.</li>
-<li>Explain what usually happens if a program or pipeline isn’t given any input to process.</li>
-<li>Explain the advantage of linking commands with pipes and filters.</li>
+<li>Write a loop that applies one or more commands separately to each file in a set of files.</li>
+<li>Trace the values taken on by a loop variable during execution of the loop.</li>
+<li>Explain the difference between a variable’s name and its value.</li>
+<li>Explain why spaces and some punctuation characters shouldn’t be used in file names.</li>
+<li>Demonstrate how to see what commands have recently been executed.</li>
+<li>Re-run recently executed commands without retyping them.</li>
 </ul>
 </div>
 </div>
@@ -13125,58 +13127,26 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Now that we know a few basic commands, we can finally look at the shell’s most powerful feature: the ease with which it lets us combine existing programs in new ways. We’ll start with the directory <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">shell-lesson-data/exercise-data/proteins</code> that contains six files describing some simple organic molecules. The .pdb extension indicates that these files are in Protein Data Bank format, a simple text format that specifies the type and position of each atom in the molecule.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div class="highlight"><pre><span></span>jupyter-user:$<span class="w"> </span>ls
-cubane.pdb<span class="w">  </span>ethane.pdb<span class="w">  </span>methane.pdb<span class="w">  </span>octane.pdb<span class="w">  </span>pentane.pdb<span class="w">  </span>propane.pdb
+<p>Loops are a programming construct which allow us to repeat a command or set of commands for each item in a list. As such they are key to productivity improvements through automation. Similar to wildcards and tab completion, using loops also reduces the amount of typing required (and hence reduces the number of typing mistakes).</p>
+<p>Suppose we have several hundred genome data files named <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">basilisk.dat</code>, <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">minotaur.dat</code>, and <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">unicorn.dat</code>. For this example, we’ll use the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">exercise-data/creatures</code> directory which only has three example files, but the principles can be applied to many many more files at once.</p>
+<p>The structure of these files is the same: the common name, classification, and updated date are presented on the first three lines, with DNA sequences on the following lines. Let’s look at the files:</p>
+<div class="highlight"><pre><span></span>jupyter-user:$<span class="w"> </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">5</span><span class="w"> </span>basilisk.dat<span class="w"> </span>minotaur.dat<span class="w"> </span>unicorn.dat
 </pre></div>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Let's run the following command:</p>
-<div class="highlight"><pre><span></span>jupyter-user:<span class="nv">$wc</span><span class="w"> </span>cubane.pdb
-<span class="m">20</span><span class="w">  </span><span class="m">156</span><span class="w"> </span><span class="m">1158</span><span class="w"> </span>cubane.pdb
+<p>We would like to print out the classification for each species, which is given on the second line of each file. For each file, we would need to execute the command <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">head -n 2</code> and pipe this to <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">tail -n 1</code>. We’ll use a loop to solve this problem, but first let’s look at the general form of a loop, using the pseudo-code below:</p>
+<div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span>thing<span class="w"> </span><span class="k">in</span><span class="w"> </span>list_of_things
+<span class="k">do</span>
+<span class="w">    </span>operation_using<span class="w"> </span><span class="nv">$thing</span><span class="w">    </span><span class="c1"># Indentation within the loop is not required, but aids legibility</span>
+<span class="k">done</span>
 </pre></div>
-<p><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">wc</code> is the ‘word count’ command: it counts the number of lines, words, and characters in files (from left to right, in that order).</p>
-<p>If we run the command <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">wc *.pdb,</code> the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">*</code> in <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">*.pdb</code> matches zero or more characters, so the shell turns <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">*.pdb</code> into a list of all <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">.pdb</code> files in the current directory:</p>
-<div class="highlight"><pre><span></span>jupyter-user:<span class="nv">$wc</span><span class="w"> </span>*.pdb
-<span class="w">  </span><span class="m">20</span><span class="w">  </span><span class="m">156</span><span class="w">  </span><span class="m">1158</span><span class="w">  </span>cubane.pdb
-<span class="w">  </span><span class="m">12</span><span class="w">  </span><span class="m">84</span><span class="w">   </span><span class="m">622</span><span class="w">   </span>ethane.pdb
-<span class="w">   </span><span class="m">9</span><span class="w">  </span><span class="m">57</span><span class="w">   </span><span class="m">422</span><span class="w">   </span>methane.pdb
-<span class="w">  </span><span class="m">30</span><span class="w">  </span><span class="m">246</span><span class="w">  </span><span class="m">1828</span><span class="w">  </span>octane.pdb
-<span class="w">  </span><span class="m">21</span><span class="w">  </span><span class="m">165</span><span class="w">  </span><span class="m">1226</span><span class="w">  </span>pentane.pdb
-<span class="w">  </span><span class="m">15</span><span class="w">  </span><span class="m">111</span><span class="w">  </span><span class="m">825</span><span class="w">   </span>propane.pdb
-<span class="w"> </span><span class="m">107</span><span class="w">  </span><span class="m">819</span><span class="w">  </span><span class="m">6081</span><span class="w">  </span>total
+<p>and we can apply this to our example like this:</p>
+<div class="highlight"><pre><span></span>jupyter-user:$<span class="w"> </span><span class="k">for</span><span class="w"> </span>filename<span class="w"> </span><span class="k">in</span><span class="w"> </span>basilisk.dat<span class="w"> </span>minotaur.dat<span class="w"> </span>unicorn.dat
+&gt;<span class="w"> </span><span class="k">do</span>
+&gt;<span class="w">     </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="nv">$filename</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span>
+&gt;<span class="w"> </span><span class="k">done</span>
+CLASSIFICATION:<span class="w"> </span>basiliscus<span class="w"> </span>vulgaris
+CLASSIFICATION:<span class="w"> </span>bos<span class="w"> </span>hominus
+CLASSIFICATION:<span class="w"> </span>equus<span class="w"> </span>monoceros
 </pre></div>
-<p>Note that <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">wc *.pdb</code> also shows the total number of all lines in the last line of the output.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>If we run <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">wc -l</code> instead of just <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">wc</code>, the output shows only the number of lines per file:</p>
-<div class="highlight"><pre><span></span>jupyter-user:<span class="nv">$wc</span><span class="w"> </span>-l<span class="w"> </span>*.pdb
-<span class="w">  </span><span class="m">20</span><span class="w">  </span>cubane.pdb
-<span class="w">  </span><span class="m">12</span><span class="w">  </span>ethane.pdb
-<span class="w">   </span><span class="m">9</span><span class="w">  </span>methane.pdb
-<span class="w">  </span><span class="m">30</span><span class="w">  </span>octane.pdb
-<span class="w">  </span><span class="m">21</span><span class="w">  </span>pentane.pdb
-<span class="w">  </span><span class="m">15</span><span class="w">  </span>propane.pdb
-<span class="w"> </span><span class="m">107</span><span class="w">  </span>total
-</pre></div>
-<p>The <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">-m</code> and <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">-w</code> options can also be used with the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">wc</code> command, to show only the number of characters or the number of words in the files.</p>
 
 </div>
 </div>
@@ -13185,13 +13155,8 @@ cubane.pdb<span class="w">  </span>ethane.pdb<span class="w">  </span>methane.pd
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div class="w3-panel w3-leftbar w3-border-blue w3-pale-blue w3-padding-small">
-    <h3 id="-Hanging-process%20"><i class="fa fa-info-circle"></i> Hanging process
-</h3>
-    <p>What happens if a command is supposed to process a file, but we don’t give it a filename? For example, what if we type:</p>
-<div class="highlight"><pre><span></span>jupyter-user:<span class="nv">$wc</span><span class="w"> </span>-l
-</pre></div>
-<p>but don’t type <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">&ast;.pdb</code> (or anything else) after the command? Since it doesn’t have any filenames, <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">wc</code> assumes it is supposed to process input given at the command prompt, so it just sits there and waits for us to give it some data interactively. From the outside, though, all we see is it sitting there: the command doesn’t appear to do anything.</p>
-<p>If you make this kind of mistake, you can escape out of this state by holding down the control key (<code style="background-color:#F7F7F7;border:1px solid #CFCFCF">Ctrl</code>) and typing the letter <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">C</code> once and letting go of the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">Ctrl</code> key. <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">Ctrl+C</code></p>
+    <h3 id="%20"><i class="fa fa-info-circle"></i> </h3>
+    <p>The shell prompt changes from <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">$</code> to <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">&gt;</code> and back again as we were typing in our loop. The second prompt, <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">&gt;</code>, is different to remind us that we haven’t finished typing a complete command yet. A semicolon, <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">;</code>, can be used to separate two commands written on a single line.</p>
 </div>
 </div>
 </div>
@@ -13199,23 +13164,8 @@ cubane.pdb<span class="w">  </span>ethane.pdb<span class="w">  </span>methane.pd
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Capturing-output-from-commands">Capturing output from commands<a class="anchor-link" href="#Capturing-output-from-commands">&#182;</a></h2><p>Which of these files contains the fewest lines? It’s an easy question to answer when there are only six files, but what if there were 6000? Our first step toward a solution is to run the command:</p>
-<div class="highlight"><pre><span></span>jupyter-user:<span class="nv">$wc</span><span class="w"> </span>-l<span class="w"> </span>*.pdb<span class="w"> </span>&gt;<span class="w"> </span>lengths.txt
-</pre></div>
-<p>The greater than symbol, <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">&gt;</code>, tells the shell to redirect the command’s output to a file instead of printing it to the screen. (This is why there is no screen output: everything that wc would have printed has gone into the file lengths.txt instead.) The shell will create the file if it doesn’t exist. If the file exists, it will be silently overwritten, which may lead to data loss and thus requires some caution. <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">ls lengths.txt</code> confirms that the file exists:</p>
-<div class="highlight"><pre><span></span>jupyter-user:<span class="nv">$ls</span><span class="w"> </span>lengths.txt
-lengths.txt
-</pre></div>
-<p>We can now send the content of lengths.txt to the screen using <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">cat lengths.txt</code>. The <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">cat</code> command gets its name from ‘concatenate’ i.e. join together, and it prints the contents of files one after another. There’s only one file in this case, so cat just shows us what it contains:</p>
-<div class="highlight"><pre><span></span>jupyter-user:<span class="nv">$cat</span><span class="w"> </span>lengths.txt
-<span class="w">  </span><span class="m">20</span><span class="w">  </span>cubane.pdb
-<span class="w">  </span><span class="m">12</span><span class="w">  </span>ethane.pdb
-<span class="w">   </span><span class="m">9</span><span class="w">  </span>methane.pdb
-<span class="w">  </span><span class="m">30</span><span class="w">  </span>octane.pdb
-<span class="w">  </span><span class="m">21</span><span class="w">  </span>pentane.pdb
-<span class="w">  </span><span class="m">15</span><span class="w">  </span>propane.pdb
-<span class="w"> </span><span class="m">107</span><span class="w">  </span>total
-</pre></div>
+<p>When the shell sees the keyword for, it knows to repeat a command (or group of commands) once for each item in a list. Each time the loop runs (called an iteration), an item in the list is assigned in sequence to the variable, and the commands inside the loop are executed, before moving on to the next item in the list. Inside the loop, we call for the variable’s value by putting <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">$</code> in front of it. The <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">$</code> tells the shell interpreter to treat the variable as a variable name and substitute its value in its place, rather than treat it as text or an external command.</p>
+<p>In this example, the list is three filenames: <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">basilisk.dat</code>, <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">minotaur.dat</code>, and <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">unicorn.dat</code>. Each time the loop iterates, it will assign a file name to the variable filename and run the head command. The first time through the loop, <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">$filename</code> is basilisk.dat. The interpreter runs the command head on <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">basilisk.dat</code> and pipes the first two lines to the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">tail</code> command, which then prints the second line of <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">basilisk.dat</code>. For the second iteration, <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">$filename</code> becomes <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">minotaur.dat</code>. This time, the shell runs head on <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">minotaur.dat</code> and pipes the first two lines to the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">tail</code> command, which then prints the second line of <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">minotaur.dat</code>. For the third iteration, <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">$filename</code> becomes <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">unicorn.dat</code>, so the shell runs the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">head</code> command on that file, and <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">tail</code> on the output of that. Since the list was only three items, the shell exits the for loop.</p>
 
 </div>
 </div>
@@ -13223,7 +13173,9 @@ lengths.txt
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Filtering-Output">Filtering Output<a class="anchor-link" href="#Filtering-Output">&#182;</a></h2><p>Next we'll use the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">sort</code> command to sort the contents of the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">lengths.txt</code> file, but first we'll use an exercise to learn about the sort command:</p>
+<h2 id="Information">Information<a class="anchor-link" href="#Information">&#182;</a></h2><p>Here we see <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">&gt;</code> being used as a shell prompt, whereas <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">&gt;</code> is also used to redirect output. Similarly, <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">$</code> is used as a shell prompt, but, as we saw earlier, it is also used to ask the shell to get the value of a variable.</p>
+<p>If the shell prints <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">&gt;</code> or <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">$</code> then it expects you to type something, and the symbol is a prompt.</p>
+<p>If you type <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">&gt;</code> or <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">$</code> yourself, it is an instruction from you that the shell should redirect output or get the value of a variable.</p>
 
 </div>
 </div>
@@ -13231,68 +13183,16 @@ lengths.txt
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<div class="w3-panel w3-leftbar w3-border-yellow w3-pale-yellow w3-padding-small">
-    <h3 id="-Sort%20"><i class="fa fa-pencil-square-o"></i> Sort
-</h3>
-    <p>The file <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">IntroShell/data/shell-lesson-data/exercise/numbers.txt</code> contains the following lines:</p>
-<div class="highlight"><pre><span></span><span class="m">10</span>
-<span class="m">2</span>
-<span class="m">19</span>
-<span class="m">22</span>
-<span class="m">6</span>
+<p>When using variables it is also possible to put the names into curly braces to clearly delimit the variable name: <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">$filename</code> is equivalent to <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">${filename}</code>, but is different from <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">${file}name</code>. You may find this notation in other people’s programs.</p>
+<p>We have called the variable in this loop filename in order to make its purpose clearer to human readers. The shell itself doesn’t care what the variable is called; if we wrote this loop as:</p>
+<div class="highlight"><pre><span></span>jupyter-user:$<span class="w"> </span><span class="k">for</span><span class="w"> </span>temperature<span class="w"> </span><span class="k">in</span><span class="w"> </span>basilisk.dat<span class="w"> </span>minotaur.dat<span class="w"> </span>unicorn.dat
+&gt;<span class="w"> </span><span class="k">do</span>
+&gt;<span class="w">     </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="nv">$temperature</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span>
+&gt;<span class="w"> </span><span class="k">done</span>
 </pre></div>
-<p>If we run sort on this file we get:</p>
-<div class="highlight"><pre><span></span>jupyter-user:<span class="nv">$sort</span><span class="w"> </span>numbers.txt
-<span class="m">10</span>
-<span class="m">2</span>
-<span class="m">19</span>
-<span class="m">22</span>
-<span class="m">6</span>
-</pre></div>
-<p>If we run <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">sort -n</code> on this file we get:</p>
-<div class="highlight"><pre><span></span>jupyter-user:<span class="nv">$sort</span><span class="w"> </span>-n<span class="w"> </span>numbers.txt
-<span class="m">2</span>
-<span class="m">6</span>
-<span class="m">10</span>
-<span class="m">19</span>
-<span class="m">22</span>
-</pre></div>
-<p>Explain why <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">-n</code> has this effect.</p>
-<p><a href="./05_pipesNfilters-soln.html#-Sort%20">Solution</a></p>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>We will also use the -n option to specify that the sort is numerical instead of alphanumerical. This does not change the file; instead, it sends the sorted result to the screen:</p>
-<div class="highlight"><pre><span></span>jupyter-user:<span class="nv">$sort</span><span class="w"> </span>-n<span class="w"> </span>lengths.txt
-<span class="w">  </span><span class="m">9</span><span class="w">  </span>methane.pdb
-<span class="w"> </span><span class="m">12</span><span class="w">  </span>ethane.pdb
-<span class="w"> </span><span class="m">15</span><span class="w">  </span>propane.pdb
-<span class="w"> </span><span class="m">20</span><span class="w">  </span>cubane.pdb
-<span class="w"> </span><span class="m">21</span><span class="w">  </span>pentane.pdb
-<span class="w"> </span><span class="m">30</span><span class="w">  </span>octane.pdb
-<span class="m">107</span><span class="w">  </span>total
-</pre></div>
-<p>We can put the sorted list of lines in another temporary file called <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">sorted-lengths.txt</code> by putting <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">&gt; sorted-lengths.txt</code> after the command, just as we used <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">&gt; lengths.txt</code> to put the output of <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">wc</code> into <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">lengths.txt</code>. Once we’ve done that, we can run another command called <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">head</code> to get the first few lines in <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">sorted-lengths.txt</code>:</p>
-<div class="highlight"><pre><span></span>jupyter-user:<span class="nv">$sort</span><span class="w"> </span>-n<span class="w"> </span>lengths.txt<span class="w"> </span>&gt;<span class="w"> </span>sorted-lengths.txt
-jupyter-user:<span class="nv">$head</span><span class="w"> </span>-n<span class="w"> </span><span class="m">1</span><span class="w"> </span>sorted-lengths.txt
-<span class="w">  </span><span class="m">9</span><span class="w">  </span>methane.pdb
-</pre></div>
-<p>Using <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">-n 1</code> with head tells it that we only want the first line of the file; <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">-n 20</code> would get the first 20, and so on. Since <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">sorted-lengths.txt</code> contains the lengths of our files ordered from least to greatest, the output of <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">head</code> must be the file with the fewest lines.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Information">Information<a class="anchor-link" href="#Information">&#182;</a></h2><p>It’s a very bad idea to try redirecting the output of a command that operates on a file to the same file. For example:</p>
-<div class="highlight"><pre><span></span>jupyter-user:<span class="nv">$sort</span><span class="w"> </span>-n<span class="w"> </span>lengths.txt<span class="w"> </span>&gt;<span class="w"> </span>lengths.txt
-</pre></div>
-<p>Doing something like this may give you incorrect results and/or delete the contents of <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">lengths.txt</code>.</p>
+<p>it would work exactly the same way. Don’t do this. Programs are only useful if people can understand them, so meaningless names (like x) or misleading names (like temperature) increase the odds that the program won’t do what its readers think it does.</p>
+<p>In the above examples, the variables (thing, filename, x and temperature) could have been given any other name, as long as it is meaningful to both the person writing the code and the person reading it.</p>
+<p>Note also that loops can be used for other things than filenames, like a list of numbers or a subset of data.</p>
 
 </div>
 </div>
@@ -13301,21 +13201,10 @@ jupyter-user:<span class="nv">$head</span><span class="w"> </span>-n<span class=
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div class="w3-panel w3-leftbar w3-border-yellow w3-pale-yellow w3-padding-small">
-    <h3 id="-%3E%3E%20"><i class="fa fa-pencil-square-o"></i> <blockquote>&gt;
-</blockquote>
+    <h3 id="-Write-your-own-loop%20"><i class="fa fa-pencil-square-o"></i> Write your own loop
 </h3>
-    <p>We have seen the use of <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">&gt;</code>, but there is a similar operator <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">&gt;&gt;</code> which works slightly differently. We’ll learn about the differences between these two operators by printing some strings. We can use the echo command to print strings e.g.</p>
-<div class="highlight"><pre><span></span>jupyter-user:<span class="nv">$echo</span><span class="w"> </span>The<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="nb">command</span><span class="w"> </span>prints<span class="w"> </span>text
-The<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="nb">command</span><span class="w"> </span>prints<span class="w"> </span>text
-</pre></div>
-<p>Now test the commands below to reveal the difference between the two operators:</p>
-<div class="highlight"><pre><span></span>jupyter-user:$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>hello<span class="w"> </span>&gt;<span class="w"> </span>testfile01.txt
-</pre></div>
-<p>and</p>
-<div class="highlight"><pre><span></span>jupyter-user:$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>hello<span class="w"> </span>&gt;&gt;<span class="w"> </span>testfile02.txt
-</pre></div>
-<p>Hint: try executing teach command twice in a row and examining the output files.</p>
-<p><a href="">Solution</a></p>
+    <p>How would you write a loop that echoes all 10 numbers from 0 to 9?</p>
+<p><a href="./06_loops-soln.html#-Write-your-own-loop%20">Solution</a></p>
 </div>
 </div>
 </div>
@@ -13324,59 +13213,24 @@ The<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div class="w3-panel w3-leftbar w3-border-yellow w3-pale-yellow w3-padding-small">
-    <h3 id="-Appending-Data%20"><i class="fa fa-pencil-square-o"></i> Appending Data
+    <h3 id="-Variables-in-loops%20"><i class="fa fa-pencil-square-o"></i> Variables in loops
 </h3>
-    <p>We have already met the head command, which prints lines from the start of a file. tail is similar, but prints lines from the end of a file instead.</p>
-<p>Consider the file <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">shell-lesson-data/exercise-data/animal-counts/animals.csv</code>. After these commands, select the answer that corresponds to the file <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">animals-subset.csv</code>:</p>
-<div class="highlight"><pre><span></span>jupyter-user:<span class="nv">$head</span><span class="w"> </span>-n<span class="w"> </span><span class="m">3</span><span class="w"> </span>animals.csv<span class="w"> </span>&gt;<span class="w"> </span>animals-subset.csv
-jupyter-user:<span class="nv">$tail</span><span class="w"> </span>-n<span class="w"> </span><span class="m">2</span><span class="w"> </span>animals.csv<span class="w"> </span>&gt;&gt;<span class="w"> </span>animals-subset.csv
+    <p>This exercise refers to the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">IntroShell/data/shell-lesson-data/exercise-data/proteins</code> directory. ls &ast;.pdb gives the following output:</p>
+<div class="highlight"><pre><span></span>cubane.pdb<span class="w">  </span>ethane.pdb<span class="w">  </span>methane.pdb<span class="w">  </span>octane.pdb<span class="w">  </span>pentane.pdb<span class="w">  </span>propane.pdb
 </pre></div>
-<ul>
-<li>The first three lines of animals.csv</li>
-<li>The last two lines of animals.csv</li>
-<li>The first three lines and the last two lines of animals.csv</li>
-<li>The second and third lines of animals.csv</li>
-</ul>
-<p><a href="">Solution</a></p>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Passing-output-to-another-command">Passing output to another command<a class="anchor-link" href="#Passing-output-to-another-command">&#182;</a></h2><p>In our example of finding the file with the fewest lines, we are using two intermediate files <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">lengths.txt</code> and <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">sorted-lengths.txt</code> to store output. This is a confusing way to work because even once you understand what wc, sort, and head do, those intermediate files make it hard to follow what’s going on. We can make it easier to understand by running sort and head together:</p>
-<div class="highlight"><pre><span></span>jupyter-user:<span class="nv">$sort</span><span class="w"> </span>-n<span class="w"> </span>lengths.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span>
-<span class="m">9</span><span class="w"> </span>methane.pdb
+<p>What is the output of the following code?</p>
+<div class="highlight"><pre><span></span>$<span class="w"> </span><span class="k">for</span><span class="w"> </span>datafile<span class="w"> </span><span class="k">in</span><span class="w"> </span>&ast;.pdb
+&gt;<span class="w"> </span><span class="k">do</span>
+&gt;<span class="w">     </span>ls<span class="w"> </span>&ast;.pdb
+&gt;<span class="w"> </span><span class="k">done</span>
 </pre></div>
-<p>The vertical bar, <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">|</code>, between the two commands is called a pipe. It tells the shell that we want to use the output of the command on the left as the input to the command on the right.</p>
-<p>This has removed the need for the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">sorted-lengths.txt</code> file.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Combining-Multiple-Commands">Combining Multiple Commands<a class="anchor-link" href="#Combining-Multiple-Commands">&#182;</a></h2><p>Nothing prevents us from chaining pipes consecutively. We can for example send the output of <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">wc</code> directly to sort, and then the resulting output to head. This removes the need for any intermediate files.</p>
-<p>We’ll start by using a pipe to send the output of <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">wc</code> to sort:</p>
-<div class="highlight"><pre><span></span>jupyter-user:<span class="nv">$wc</span><span class="w"> </span>-l<span class="w"> </span>*.pdb<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-n
-<span class="w">   </span><span class="m">9</span><span class="w"> </span>methane.pdb
-<span class="w">  </span><span class="m">12</span><span class="w"> </span>ethane.pdb
-<span class="w">  </span><span class="m">15</span><span class="w"> </span>propane.pdb
-<span class="w">  </span><span class="m">20</span><span class="w"> </span>cubane.pdb
-<span class="w">  </span><span class="m">21</span><span class="w"> </span>pentane.pdb
-<span class="w">  </span><span class="m">30</span><span class="w"> </span>octane.pdb
-<span class="w"> </span><span class="m">107</span><span class="w"> </span>total
+<p>Now, what is the output of the following code?</p>
+<div class="highlight"><pre><span></span>$<span class="w"> </span><span class="k">for</span><span class="w"> </span>datafile<span class="w"> </span><span class="k">in</span><span class="w"> </span>&ast;.pdb
+&gt;<span class="w"> </span><span class="k">do</span>
+&gt;<span class="w">     </span>ls<span class="w"> </span><span class="nv">$datafile</span>
+&gt;<span class="w"> </span><span class="k">done</span>
 </pre></div>
-<p>We can then send that output through another pipe, to head, so that the full pipeline becomes:</p>
-<div class="highlight"><pre><span></span>jupyter-user:<span class="nv">$wc</span><span class="w"> </span>-l<span class="w"> </span>*.pdb<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-n<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span>
-<span class="w">   </span><span class="m">9</span><span class="w"> </span>methane.pdb
-</pre></div>
-<p>This is exactly like a mathematician nesting functions like log(3x) and saying ‘the log of three times x’. In our case, the calculation is ‘head of sort of line count of *.pdb’.</p>
-<p>The redirection and pipes used in the last few commands are illustrated below:</p>
-<p><img src="./images/05/redirects-and-pipes.png" alt=""></p>
-
+</div>
 </div>
 </div>
 </div>
@@ -13384,56 +13238,35 @@ jupyter-user:<span class="nv">$tail</span><span class="w"> </span>-n<span class=
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div class="w3-panel w3-leftbar w3-border-yellow w3-pale-yellow w3-padding-small">
-    <h3 id="-Piping-Commands%20"><i class="fa fa-pencil-square-o"></i> Piping Commands
+    <h3 id="-Limiting-Sets-of-Files%20"><i class="fa fa-pencil-square-o"></i> Limiting Sets of Files
 </h3>
-    <p>In our current directory, we want to find the 3 files which have the least number of lines. Which command listed below would work?</p>
-<div class="highlight"><pre><span></span><span class="nv">$wc</span><span class="w"> </span>-l<span class="w"> </span>&ast;<span class="w"> </span>&gt;<span class="w"> </span>sort<span class="w"> </span>-n<span class="w"> </span>&gt;<span class="w"> </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">3</span>
-<span class="nv">$wc</span><span class="w"> </span>-l<span class="w"> </span>&ast;<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-n<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span>-3
-<span class="nv">$wc</span><span class="w"> </span>-l<span class="w"> </span>&ast;<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-n
-<span class="nv">$wc</span><span class="w"> </span>-l<span class="w"> </span>&ast;<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-n<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">3</span>
+    <p>What would be the output of running the following loop in the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">proteins</code> directory?</p>
+<div class="highlight"><pre><span></span>$<span class="w"> </span><span class="k">for</span><span class="w"> </span>filename<span class="w"> </span><span class="k">in</span><span class="w"> </span>c&ast;
+&gt;<span class="w"> </span><span class="k">do</span>
+&gt;<span class="w">     </span>ls<span class="w"> </span><span class="nv">$filename</span>
+&gt;<span class="w"> </span><span class="k">done</span>
 </pre></div>
+<ol>
+<li>No files are listed </li>
+<li>All files are listed</li>
+<li>Only cubane.pdb , octane.pdb and pentane.pdb are listed</li>
+<li>Only cubane.pdb is listed</li>
+</ol>
+<p>How would the output differ from:</p>
+<div class="highlight"><pre><span></span>$<span class="w"> </span><span class="k">for</span><span class="w"> </span>filename<span class="w"> </span><span class="k">in</span><span class="w"> </span>&ast;c&ast;
+&gt;<span class="w"> </span><span class="k">do</span>
+&gt;<span class="w">     </span>ls<span class="w"> </span><span class="nv">$filename</span>
+&gt;<span class="w"> </span><span class="k">done</span>
+</pre></div>
+<ol>
+<li>The same files would be listed.</li>
+<li>All the files are listed this time.</li>
+<li>No files are listed this time.</li>
+<li>The files cubane.pdb and octane.pdb will be listed.</li>
+<li>Only the file octane.pdb will be listed.</li>
+</ol>
+<p><a href="./06_loops-soln.html#-Limiting-Sets-of-Files%20">Solution</a></p>
 </div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Nelle's-Pipeline:-Checking-Files">Nelle's Pipeline: Checking Files<a class="anchor-link" href="#Nelle's-Pipeline:-Checking-Files">&#182;</a></h2><p>Nelle has run her samples through the assay machines and created 17 files in the n<code style="background-color:#F7F7F7;border:1px solid #CFCFCF">orth-pacific-gyre</code> directory described earlier. As a quick check, starting from the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">IntroShell/dtata/shell-lesson-data</code> directory, Nelle types:</p>
-<div class="highlight"><pre><span></span>jupyter-user:<span class="nv">$cd</span><span class="w"> </span>north-pacific-gyre
-jupyter-user:wc<span class="w"> </span>-l<span class="w"> </span>*.txt
-</pre></div>
-<p>The output is 18 lines that look like:</p>
-<div class="highlight"><pre><span></span><span class="m">300</span><span class="w"> </span>NENE01729A.txt
-<span class="m">300</span><span class="w"> </span>NENE01729B.txt
-<span class="m">300</span><span class="w"> </span>NENE01736A.txt
-<span class="m">300</span><span class="w"> </span>NENE01751A.txt
-<span class="m">300</span><span class="w"> </span>NENE01751B.txt
-<span class="m">300</span><span class="w"> </span>NENE01812A.txt
-...
-</pre></div>
-<p>Now she types this:</p>
-<div class="highlight"><pre><span></span>jupyter-user:<span class="nv">$wc</span><span class="w"> </span>-l<span class="w"> </span>*.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-n<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">5</span>
-<span class="w"> </span><span class="m">240</span><span class="w"> </span>NENE02018B.txt
-<span class="w"> </span><span class="m">300</span><span class="w"> </span>NENE01729A.txt
-<span class="w"> </span><span class="m">300</span><span class="w"> </span>NENE01729B.txt
-<span class="w"> </span><span class="m">300</span><span class="w"> </span>NENE01736A.txt
-<span class="w"> </span><span class="m">300</span><span class="w"> </span>NENE01751A.txt
-</pre></div>
-<p>Whoops: one of the files is 60 lines shorter than the others. When she goes back and checks it, she sees that she did that assay at 8:00 on a Monday morning — someone was probably in using the machine on the weekend, and she forgot to reset it. Before re-running that sample, she checks to see if any files have too much data:</p>
-<div class="highlight"><pre><span></span>jupyter-user:<span class="nv">$wc</span><span class="w"> </span>-l<span class="w"> </span>*.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-n<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-n<span class="w"> </span><span class="m">5</span>
-<span class="w"> </span><span class="m">300</span><span class="w"> </span>NENE02040B.txt
-<span class="w"> </span><span class="m">300</span><span class="w"> </span>NENE02040Z.txt
-<span class="w"> </span><span class="m">300</span><span class="w"> </span>NENE02043A.txt
-<span class="w"> </span><span class="m">300</span><span class="w"> </span>NENE02043B.txt
-<span class="w"> </span><span class="m">5040</span><span class="w"> </span>total
-</pre></div>
-<p>Those numbers look good — but what’s that ‘Z’ doing there in the third-to-last line? All of her samples should be marked ‘A’ or ‘B’; by convention, her lab uses ‘Z’ to indicate samples with missing information. To find others like it, she does this:</p>
-<div class="highlight"><pre><span></span>jupyter-user:$<span class="w"> </span>ls<span class="w"> </span>*Z.txt
-NENE01971Z.txt<span class="w">    </span>NENE02040Z.txt
-</pre></div>
-<p>Sure enough, when she checks the log on her laptop, there’s no depth recorded for either of those samples. Since it’s too late to get the information any other way, she must exclude those two files from her analysis. She could delete them using rm, but there are actually some analyses she might do later where depth doesn’t matter, so instead, she’ll have to be careful later on to select files using the wildcard expressions NENE<em>A.txt NENE</em>B.txt.</p>
-
 </div>
 </div>
 </div>
@@ -13441,15 +13274,22 @@ NENE01971Z.txt<span class="w">    </span>NENE02040Z.txt
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div class="w3-panel w3-leftbar w3-border-yellow w3-pale-yellow w3-padding-small">
-    <h3 id="-Remove-unneeded-files%20"><i class="fa fa-pencil-square-o"></i> Remove unneeded files
+    <h3 id="-Saving-to-a-file-in-a-loop---Part-one%20"><i class="fa fa-pencil-square-o"></i> Saving to a file in a loop - Part one
 </h3>
-    <p>Suppose you want to delete your processed data files, and only keep your raw files and processing script to save storage. The raw files end in <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">.dat</code> and the processed files end in <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">.txt</code>. Which of the following would remove all the processed data files, and only the processed data files?</p>
-<div class="highlight"><pre><span></span><span class="m">1</span>.<span class="w"> </span><span class="nv">$rm</span><span class="w"> </span>?.txt
-<span class="m">2</span>.<span class="w"> </span><span class="nv">$rm</span><span class="w"> </span>&ast;.txt
-<span class="m">3</span>.<span class="w"> </span><span class="nv">$rm</span><span class="w"> </span>&ast;<span class="w"> </span>.txt
-<span class="m">4</span>.<span class="w"> </span><span class="nv">$rm</span><span class="w"> </span>&ast;.&ast;
+    <p>In the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">proteins</code> directory, what is the effect of this loop?</p>
+<div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span>alkanes<span class="w"> </span><span class="k">in</span><span class="w"> </span>&ast;.pdb
+<span class="k">do</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$alkanes</span>
+<span class="w">    </span>cat<span class="w"> </span><span class="nv">$alkanes</span><span class="w"> </span>&gt;<span class="w"> </span>alkanes.pdb
+<span class="k">done</span>
 </pre></div>
-<p><a href="./05_pipesNfilters-soln.html#-Remove-unneeded-files%20">Solution</a></p>
+<ol>
+<li>Prints cubane.pdb, ethane.pdb, methane.pdb, octane.pdb, pentane.pdb and propane.pdb, and the text from propane.pdb will be saved to a file called alkanes.pdb.</li>
+<li>Prints cubane.pdb, ethane.pdb, and methane.pdb, and the text from all three files would be concatenated and saved to a file called alkanes.pdb.</li>
+<li>Prints cubane.pdb, ethane.pdb, methane.pdb, octane.pdb, and pentane.pdb, and the text from propane.pdb will be saved to a file called alkanes.pdb.</li>
+<li>None of the above.</li>
+</ol>
+<p><a href="./06_loops-soln.html#-Saving-to-a-file-in-a-loop---Part-one%20">Solution</a></p>
 </div>
 </div>
 </div>
@@ -13457,20 +13297,43 @@ NENE01971Z.txt<span class="w">    </span>NENE02040Z.txt
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<div class="w3-panel w3-leftbar w3-border-green w3-pale-green w3-padding-small">
-    <h3 id="-Key-Points%3A%20"><i class="fa fa-key"></i> Key Points:
+<div class="w3-panel w3-leftbar w3-border-yellow w3-pale-yellow w3-padding-small">
+    <h3 id="-Saving-to-a-file-in-a-loop---Part-two%20"><i class="fa fa-pencil-square-o"></i> Saving to a file in a loop - Part two
 </h3>
-    <ul>
-<li><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">wc</code> counts lines, words, and characters in its inputs.</li>
-<li><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">cat</code> displays the contents of its inputs.</li>
-<li><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">sort</code> sorts its inputs.</li>
-<li><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">head</code> displays the first 10 lines of its input.</li>
-<li><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">tail</code> displays the last 10 lines of its input.</li>
-<li><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">command &gt; [file]</code> redirects a command’s output to a file (overwriting any existing content).</li>
-<li><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">command &gt;&gt; [file]</code> appends a command’s output to a file.</li>
-<li><code style="background-color:#F7F7F7;border:1px solid #CFCFCF">[first] | [second]</code> is a pipeline: the output of the first command is used as the input to the second.</li>
-<li>The best way to use the shell is to use pipes to combine simple single-purpose programs (filters).</li>
-</ul>
+    <p>In the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">proteins</code> directory, what is the effect of this loop?</p>
+<div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span>datafile<span class="w"> </span><span class="k">in</span><span class="w"> </span>&ast;.pdb
+<span class="k">do</span>
+<span class="w">    </span>cat<span class="w"> </span><span class="nv">$datafile</span><span class="w"> </span>&gt;<span class="w"> </span>all.pdb
+<span class="k">done</span>
+</pre></div>
+<ol>
+<li>All of the text from cubane.pdb, ethane.pdb, methane.pdb, octane.pdb, and pentane.pdb would be concatenated and saved to a file called all.pdb.</li>
+<li>The text from ethane.pdb will be saved to a file called all.pdb.</li>
+<li>All of the text from cubane.pdb, ethane.pdb, methane.pdb, octane.pdb, pentane.pdb and propane.pdb would be concatenated and saved to a file called all.pdb.</li>
+<li>All of the text from cubane.pdb, ethane.pdb, methane.pdb, octane.pdb, pentane.pdb and propane.pdb would be printed to the screen and saved to a file called all.pdb.</li>
+</ol>
+<p><a href="./06_loops-soln.html#-Saving-to-a-file-in-a-loop---Part-two%20">Solution</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="w3-panel w3-leftbar w3-border-yellow w3-pale-yellow w3-padding-small">
+    <h3 id="-Creating-backups%20"><i class="fa fa-pencil-square-o"></i> Creating backups
+</h3>
+    <p>In <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">IntroShell/data/shell-lesson-data/exercise-data/creatures</code> we would like to modify each of the files, but before we do that we would like to create a backup of each file, e.g. a backup of <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">basilisk.dat</code> named <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">original-basilisk.dat</code> etc.</p>
+<p>We can't use:</p>
+<div class="highlight"><pre><span></span>jupyter-user:$<span class="w"> </span>cp<span class="w"> </span>&ast;.dat<span class="w"> </span>original-&ast;.dat
+</pre></div>
+<p>as that would expand to</p>
+<div class="highlight"><pre><span></span>jupyter-user:$<span class="w"> </span>cp<span class="w"> </span>basilisk.dat<span class="w"> </span>minotaur.dat<span class="w"> </span>unicorn.dat<span class="w"> </span>original-&ast;.dat
+cp:<span class="w"> </span>target<span class="w"> </span><span class="sb">`</span>original-&ast;.dat<span class="err">&#39;</span><span class="w"> </span>is<span class="w"> </span>not<span class="w"> </span>a<span class="w"> </span>directory
+</pre></div>
+<p>and we get an error as cp expects the last input to be a directory if it recieves more than two inputs.</p>
+<p>Instead write a loop to acomplish this task.</p>
+<p><a href="./06_loops-soln.html#-Creating-backups%20">Solution</a></p>
 </div>
 </div>
 </div>
@@ -13486,9 +13349,9 @@ NENE01971Z.txt<span class="w">    </span>NENE02040Z.txt
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div class="w3-bar w3-blue-grey">
-<a href="./04_workingFD.html" class="w3-left-align w3-bar-item w3-button w3-mobile" style="width:33%"><h2><i class="fa fa-angle-double-left"></i> Previous</h2></a>
+<a href="./05_pipesNfilters.html" class="w3-left-align w3-bar-item w3-button w3-mobile" style="width:33%"><h2><i class="fa fa-angle-double-left"></i> Previous</h2></a>
 <a href="./00_schedule.html" class="w3-bar-item w3-button w3-center w3-mobile" style="width:33%"><h2>Schedule</h2></a>
-<a href="./06_loops.html" class="w3-right-align w3-bar-item w3-button w3-right w3-mobile" style="width:33%"><h2>Next <i class="fa fa-angle-double-right"></i></h2></a>
+<a href="./00_schedule.html" class="w3-right-align w3-bar-item w3-button w3-right w3-mobile" style="width:33%"><h2>Next <i class="fa fa-angle-double-right"></i></h2></a>
 </div>
 </div>
 </div>
