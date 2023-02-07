@@ -13230,6 +13230,7 @@ CLASSIFICATION:<span class="w"> </span>equus<span class="w"> </span>monoceros
 &gt;<span class="w">     </span>ls<span class="w"> </span><span class="nv">$datafile</span>
 &gt;<span class="w"> </span><span class="k">done</span>
 </pre></div>
+<p><a href="">Solution</a></p>
 </div>
 </div>
 </div>
@@ -13329,7 +13330,7 @@ CLASSIFICATION:<span class="w"> </span>equus<span class="w"> </span>monoceros
 </pre></div>
 <p>as that would expand to</p>
 <div class="highlight"><pre><span></span>jupyter-user:$<span class="w"> </span>cp<span class="w"> </span>basilisk.dat<span class="w"> </span>minotaur.dat<span class="w"> </span>unicorn.dat<span class="w"> </span>original-&ast;.dat
-cp:<span class="w"> </span>target<span class="w"> </span><span class="sb">`</span>original-&ast;.dat<span class="err">&#39;</span><span class="w"> </span>is<span class="w"> </span>not<span class="w"> </span>a<span class="w"> </span>directory
+cp:<span class="w"> </span>target<span class="w"> </span><span class="sb">`</span>original-&ast;.dat<span class="sb">`</span><span class="w"> </span>is<span class="w"> </span>not<span class="w"> </span>a<span class="w"> </span>directory
 </pre></div>
 <p>and we get an error as cp expects the last input to be a directory if it recieves more than two inputs.</p>
 <p>Instead write a loop to acomplish this task.</p>
