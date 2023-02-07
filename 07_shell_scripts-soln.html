@@ -3,7 +3,7 @@
 <head><meta charset="utf-8" />
 <link rel="icon" type="image/png" href="css/favicon.png"/>
 
-<title>00_schedule</title>
+<title>07_shell_scripts-soln</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -13093,96 +13093,70 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="RSS-@-University-of-Bath:-Introducing-the-Shell">RSS @ University of Bath: Introducing the Shell<a class="anchor-link" href="#RSS-@-University-of-Bath:-Introducing-the-Shell">&#182;</a></h1><h2 id="The-Unix-Shell">The Unix Shell<a class="anchor-link" href="#The-Unix-Shell">&#182;</a></h2><p>The Unix shell has been around longer than most of its users have been alive. It has survived so long because it's a power tool that allows people to do complex things with just a few keystrokes. More importantly, it helps them combine existing programs in new ways and automate repetitive tasks so they aren't typing the same things over and over again. Use of the shell is fundamental to using a wide range of other powerful tools and computing resources (including "high-performance computing" supercomputers). These lessons will start you on a path towards using these resources effectively.</p>
-
+<h1 id="Solutions">Solutions<a class="anchor-link" href="#Solutions">&#182;</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The following workshop is an introduction to the shell provided by the <em>Research Software Skills</em> team and the Research Computing team from the University of Bath, derived from the <a href="https://software-carpentry.org/">Software Carpentry</a> lesson of the same name, under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</p>
-
+<div class="w3-panel w3-leftbar w3-border-blue w3-pale-blue w3-padding-small">
+    <h3 id="-Additional-Arguments%20"><i class="fa fa-eye"></i> Additional Arguments
+</h3>
+    <div class="highlight"><pre><span></span>head<span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$2</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$3</span><span class="s2">&quot;</span>
+</pre></div>
+<p>and we can now call our script with, for example:</p>
+<div class="highlight"><pre><span></span>jupyter-user:$<span class="w"> </span>bash<span class="w"> </span>middle.sh<span class="w"> </span>pentane.pdb<span class="w"> </span><span class="m">15</span><span class="w"> </span><span class="m">5</span>
+ATOM<span class="w">      </span><span class="m">9</span><span class="w">  </span>H<span class="w">           </span><span class="m">1</span><span class="w">       </span><span class="m">1</span>.324<span class="w">   </span><span class="m">0</span>.350<span class="w">  </span>-1.332<span class="w">  </span><span class="m">1</span>.00<span class="w">  </span><span class="m">0</span>.00
+ATOM<span class="w">     </span><span class="m">10</span><span class="w">  </span>H<span class="w">           </span><span class="m">1</span><span class="w">       </span><span class="m">1</span>.271<span class="w">   </span><span class="m">1</span>.378<span class="w">   </span><span class="m">0</span>.122<span class="w">  </span><span class="m">1</span>.00<span class="w">  </span><span class="m">0</span>.00
+ATOM<span class="w">     </span><span class="m">11</span><span class="w">  </span>H<span class="w">           </span><span class="m">1</span><span class="w">      </span>-0.074<span class="w">  </span>-0.384<span class="w">   </span><span class="m">1</span>.288<span class="w">  </span><span class="m">1</span>.00<span class="w">  </span><span class="m">0</span>.00
+ATOM<span class="w">     </span><span class="m">12</span><span class="w">  </span>H<span class="w">           </span><span class="m">1</span><span class="w">      </span>-0.048<span class="w">  </span>-1.362<span class="w">  </span>-0.205<span class="w">  </span><span class="m">1</span>.00<span class="w">  </span><span class="m">0</span>.00
+ATOM<span class="w">     </span><span class="m">13</span><span class="w">  </span>H<span class="w">           </span><span class="m">1</span><span class="w">      </span>-1.183<span class="w">   </span><span class="m">0</span>.500<span class="w">  </span>-1.412<span class="w">  </span><span class="m">1</span>.00<span class="w">  </span><span class="m">0</span>.00
+</pre></div>
+<div class="highlight"><pre><span></span>jupyter-user:$<span class="w"> </span>bash<span class="w"> </span>middle.sh<span class="w"> </span>pentane.pdb<span class="w"> </span><span class="m">20</span><span class="w"> </span><span class="m">5</span>
+ATOM<span class="w">     </span><span class="m">14</span><span class="w">  </span>H<span class="w">           </span><span class="m">1</span><span class="w">      </span>-1.259<span class="w">   </span><span class="m">1</span>.420<span class="w">   </span><span class="m">0</span>.112<span class="w">  </span><span class="m">1</span>.00<span class="w">  </span><span class="m">0</span>.00
+ATOM<span class="w">     </span><span class="m">15</span><span class="w">  </span>H<span class="w">           </span><span class="m">1</span><span class="w">      </span>-2.608<span class="w">  </span>-0.407<span class="w">   </span><span class="m">1</span>.130<span class="w">  </span><span class="m">1</span>.00<span class="w">  </span><span class="m">0</span>.00
+ATOM<span class="w">     </span><span class="m">16</span><span class="w">  </span>H<span class="w">           </span><span class="m">1</span><span class="w">      </span>-2.540<span class="w">  </span>-1.303<span class="w">  </span>-0.404<span class="w">  </span><span class="m">1</span>.00<span class="w">  </span><span class="m">0</span>.00
+ATOM<span class="w">     </span><span class="m">17</span><span class="w">  </span>H<span class="w">           </span><span class="m">1</span><span class="w">      </span>-3.393<span class="w">   </span><span class="m">0</span>.254<span class="w">  </span>-0.321<span class="w">  </span><span class="m">1</span>.00<span class="w">  </span><span class="m">0</span>.00
+TER<span class="w">      </span><span class="m">18</span><span class="w">              </span><span class="m">1</span>
+</pre></div>
 </div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Schedule">Schedule<a class="anchor-link" href="#Schedule">&#182;</a></h2><p>Approximate timings for the lesson:</p>
-<table>
-<thead><tr>
-<th>Time</th>
-<th>Episode</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0:00</td>
-<td><a href="./01_getting_setup.html">Getting Set-Up</a></td>
-<td>Setting up for the Workshop</td>
-</tr>
-<tr>
-<td>0:05</td>
-<td><a href="./02_introducing_the_shell.html">Introducing the shell</a></td>
-<td>What is a command shell and why would I use one?</td>
-</tr>
-<tr>
-<td>0:15</td>
-<td><a href="./03_navigatingFD.html">Navigating Files and Directories</a></td>
-<td>How can I move around on my computer?</td>
-</tr>
-<tr>
-<td>-</td>
-<td>-</td>
-<td>How can I see what files and directories I have?</td>
-</tr>
-<tr>
-<td>-</td>
-<td>-</td>
-<td>How can I specify the location of a file or directory on my computer?</td>
-</tr>
-<tr>
-<td>0:45</td>
-<td><a href="./04_workingFD.html">Working with Files and Directories</a></td>
-<td>How can I create, copy, and delete files and directories?</td>
-</tr>
-<tr>
-<td>-</td>
-<td>-</td>
-<td>How can I edit files?</td>
-</tr>
-<tr>
-<td>1:35</td>
-<td><a href="./05_pipesNfilters.html">Pipes and Filters</a></td>
-<td>How can I combine existing commands to do new things?</td>
-</tr>
-<tr>
-<td>2:10</td>
-<td><a href="./06_loops.html">Loops</a></td>
-<td>How can perform the same actions on many different files</td>
-</tr>
-<tr>
-<td>3:00</td>
-<td><a href="./07_shellscripts.html">Shell Scripts</a></td>
-<td>How can I save and reuse commands</td>
-</tr>
-<tr>
-<td>4:30</td>
-<td>Finish</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<div class="w3-panel w3-leftbar w3-border-blue w3-pale-blue w3-padding-small">
+    <h3 id="-Variables-in-shell-scripts%20"><i class="fa fa-eye"></i> Variables in shell scripts
+</h3>
+    <p>The correct answer is 2.</p>
+<p>The special variables $1, $2 and $3 represent the command line arguments given to the script, such that the commands run are:</p>
+<div class="highlight"><pre><span></span>$<span class="w"> </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span><span class="w"> </span>cubane.pdb<span class="w"> </span>ethane.pdb<span class="w"> </span>octane.pdb<span class="w"> </span>pentane.pdb<span class="w"> </span>propane.pdb
+$<span class="w"> </span>tail<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span><span class="w"> </span>cubane.pdb<span class="w"> </span>ethane.pdb<span class="w"> </span>octane.pdb<span class="w"> </span>pentane.pdb<span class="w"> </span>propane.pdb
+</pre></div>
+<p>The shell does not expand '<em>.pdb' because it is enclosed by quote marks. As such, the first argument to the script is '</em>.pdb' which gets expanded within the script by head and tail.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="w3-panel w3-leftbar w3-border-blue w3-pale-blue w3-padding-small">
+    <h3 id="-Longest-file%20"><i class="fa fa-eye"></i> Longest file
+</h3>
+    <div class="highlight"><pre><span></span><span class="c1"># Shell script which takes two arguments:</span>
+<span class="c1">#    1. a directory name</span>
+<span class="c1">#    2. a file extension</span>
+<span class="c1"># and prints the name of the file in that directory</span>
+<span class="c1"># with the most lines which matches the file extension.</span>
 
+wc<span class="w"> </span>-l<span class="w"> </span><span class="nv">$1</span>/&ast;.<span class="nv">$2</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-n<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-n<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span>
+</pre></div>
+<p>The first part of the pipeline, <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">wc -l $1/&ast;.$2 | sort -n</code>, counts the lines in each file and sorts them numerically (largest last). When there’s more than one file, <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">wc</code> also outputs a final summary line, giving the total number of lines across all files. We use <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">tail -n 2 | head -n 1</code> to throw away this last line.</p>
+<p>With <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">wc -l $1/&ast;.$2 | sort -n | tail -n 1</code>we’ll see the final summary line: we can build our pipeline up in pieces to be sure we understand the output.</p>
+</div>
 </div>
 </div>
 </div>

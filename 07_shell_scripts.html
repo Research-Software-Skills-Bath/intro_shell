@@ -3,7 +3,7 @@
 <head><meta charset="utf-8" />
 <link rel="icon" type="image/png" href="css/favicon.png"/>
 
-<title>00_schedule</title>
+<title>07_shell_scripts</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -13093,7 +13093,50 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="RSS-@-University-of-Bath:-Introducing-the-Shell">RSS @ University of Bath: Introducing the Shell<a class="anchor-link" href="#RSS-@-University-of-Bath:-Introducing-the-Shell">&#182;</a></h1><h2 id="The-Unix-Shell">The Unix Shell<a class="anchor-link" href="#The-Unix-Shell">&#182;</a></h2><p>The Unix shell has been around longer than most of its users have been alive. It has survived so long because it's a power tool that allows people to do complex things with just a few keystrokes. More importantly, it helps them combine existing programs in new ways and automate repetitive tasks so they aren't typing the same things over and over again. Use of the shell is fundamental to using a wide range of other powerful tools and computing resources (including "high-performance computing" supercomputers). These lessons will start you on a path towards using these resources effectively.</p>
+<h1 id="Shell-scripts">Shell scripts<a class="anchor-link" href="#Shell-scripts">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="w3-panel w3-leftbar w3-border-green w3-pale-green w3-padding-small">
+    <h3 id="-Overview%3A%20"><i class="fa fa-file-o"></i> Overview:
+</h3>
+    <ul>
+<li><strong>Teaching:</strong>  30 min</li>
+<li><strong>Exercises:</strong> 15 min</li>
+</ul>
+<p><strong>Questions</strong></p>
+<ul>
+<li>How can I save and re-use commands?</li>
+</ul>
+<p><strong>Objectives</strong></p>
+<ul>
+<li>Write a shell script that runs a command or series of commands for a fixed set of files.</li>
+<li>Run a shell script from the command line.</li>
+<li>Write a shell script that operates on a set of files defined by the user on the command line.</li>
+<li>Create pipelines that include shell scripts you, and others, have written.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We are finally ready to see what makes the shell such a powerful programming environment. We are going to take the commands we repeat frequently and save them in files so that we can re-run all those operations again later by typing a single command. For historical reasons, a bunch of commands saved in a file is usually called a shell script, but make no mistake: these are actually small programs.</p>
+<p>Not only will writing shell scripts make your work faster — you won’t have to retype the same commands over and over again — it will also make it more accurate (fewer chances for typos) and more reproducible. If you come back to your work later (or if someone else finds your work and wants to build on it) you will be able to reproduce the same results simply by running your script, rather than having to remember or retype a long list of commands.</p>
+<p>Let’s start by going back to proteins/ and creating a new file, middle.sh which will become our shell script:</p>
+<div class="highlight"><pre><span></span>jupyter-user:<span class="nv">$cd</span><span class="w"> </span>~/IntroShell/data/shell-lesson-data/exercise-data/proteins
+jupyter-user:<span class="nv">$nano</span><span class="w"> </span>middle.sh
+</pre></div>
+<p>As we have seen the command <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">nano middle.sh</code> opens the file <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">middle.sh</code> within the text editor <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">nano</code> (which runs within the shell). If the file does not exist, it will be created. We can use the text editor to directly edit the file – we’ll simply insert the following line:</p>
+<div class="highlight"><pre><span></span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">15</span><span class="w"> </span>octane.pdb<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-n<span class="w"> </span><span class="m">5</span>
+</pre></div>
+<p>This is a variation on the pipe we constructed earlier: it selects lines 11-15 of the file octane.pdb. Remember, we are not running it as a command just yet: we are putting the commands in a file.</p>
+<p>Then we save the file (Ctrl-O in nano), and exit the text editor (Ctrl-X in nano). Check that the directory proteins now contains a file called middle.sh.</p>
+<p>Once we have saved the file, we can ask the shell to execute the commands it contains. Our shell is called bash, so we run the following command:</p>
 
 </div>
 </div>
@@ -13101,7 +13144,17 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The following workshop is an introduction to the shell provided by the <em>Research Software Skills</em> team and the Research Computing team from the University of Bath, derived from the <a href="https://software-carpentry.org/">Software Carpentry</a> lesson of the same name, under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</p>
+<p>This is a variation on the pipe we constructed earlier: it selects lines 11-15 of the file octane.pdb. Remember, we are not running it as a command just yet: we are putting the commands in a file.</p>
+<p>Then we save the file (<code style="background-color:#F7F7F7;border:1px solid #CFCFCF">Ctrl-O</code> in nano), and exit the text editor (<code style="background-color:#F7F7F7;border:1px solid #CFCFCF">Ctrl-X</code> in nano). Check that the directory proteins now contains a file called middle.sh.</p>
+<p>Once we have saved the file, we can ask the shell to execute the commands it contains. Our shell is called bash, so we run the following command:</p>
+<div class="highlight"><pre><span></span>jupyter-user:<span class="nv">$bash</span><span class="w"> </span>middle.sh
+ATOM<span class="w">      </span><span class="m">9</span><span class="w">  </span>H<span class="w">           </span><span class="m">1</span><span class="w">      </span>-4.502<span class="w">   </span><span class="m">0</span>.681<span class="w">   </span><span class="m">0</span>.785<span class="w">  </span><span class="m">1</span>.00<span class="w">  </span><span class="m">0</span>.00
+ATOM<span class="w">     </span><span class="m">10</span><span class="w">  </span>H<span class="w">           </span><span class="m">1</span><span class="w">      </span>-5.254<span class="w">  </span>-0.243<span class="w">  </span>-0.537<span class="w">  </span><span class="m">1</span>.00<span class="w">  </span><span class="m">0</span>.00
+ATOM<span class="w">     </span><span class="m">11</span><span class="w">  </span>H<span class="w">           </span><span class="m">1</span><span class="w">      </span>-4.357<span class="w">   </span><span class="m">1</span>.252<span class="w">  </span>-0.895<span class="w">  </span><span class="m">1</span>.00<span class="w">  </span><span class="m">0</span>.00
+ATOM<span class="w">     </span><span class="m">12</span><span class="w">  </span>H<span class="w">           </span><span class="m">1</span><span class="w">      </span>-3.009<span class="w">  </span>-0.741<span class="w">  </span>-1.467<span class="w">  </span><span class="m">1</span>.00<span class="w">  </span><span class="m">0</span>.00
+ATOM<span class="w">     </span><span class="m">13</span><span class="w">  </span>H<span class="w">           </span><span class="m">1</span><span class="w">      </span>-3.172<span class="w">  </span>-1.337<span class="w">   </span><span class="m">0</span>.206<span class="w">  </span><span class="m">1</span>.00<span class="w">  </span><span class="m">0</span>.00
+</pre></div>
+<p>Sure enough, our script’s output is exactly what we would get if we ran that pipeline directly.</p>
 
 </div>
 </div>
@@ -13109,72 +13162,215 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Schedule">Schedule<a class="anchor-link" href="#Schedule">&#182;</a></h2><p>Approximate timings for the lesson:</p>
-<table>
-<thead><tr>
-<th>Time</th>
-<th>Episode</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0:00</td>
-<td><a href="./01_getting_setup.html">Getting Set-Up</a></td>
-<td>Setting up for the Workshop</td>
-</tr>
-<tr>
-<td>0:05</td>
-<td><a href="./02_introducing_the_shell.html">Introducing the shell</a></td>
-<td>What is a command shell and why would I use one?</td>
-</tr>
-<tr>
-<td>0:15</td>
-<td><a href="./03_navigatingFD.html">Navigating Files and Directories</a></td>
-<td>How can I move around on my computer?</td>
-</tr>
-<tr>
-<td>-</td>
-<td>-</td>
-<td>How can I see what files and directories I have?</td>
-</tr>
-<tr>
-<td>-</td>
-<td>-</td>
-<td>How can I specify the location of a file or directory on my computer?</td>
-</tr>
-<tr>
-<td>0:45</td>
-<td><a href="./04_workingFD.html">Working with Files and Directories</a></td>
-<td>How can I create, copy, and delete files and directories?</td>
-</tr>
-<tr>
-<td>-</td>
-<td>-</td>
-<td>How can I edit files?</td>
-</tr>
-<tr>
-<td>1:35</td>
-<td><a href="./05_pipesNfilters.html">Pipes and Filters</a></td>
-<td>How can I combine existing commands to do new things?</td>
-</tr>
-<tr>
-<td>2:10</td>
-<td><a href="./06_loops.html">Loops</a></td>
-<td>How can perform the same actions on many different files</td>
-</tr>
-<tr>
-<td>3:00</td>
-<td><a href="./07_shellscripts.html">Shell Scripts</a></td>
-<td>How can I save and reuse commands</td>
-</tr>
-<tr>
-<td>4:30</td>
-<td>Finish</td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<h2 id="Information">Information<a class="anchor-link" href="#Information">&#182;</a></h2><p>We usually call programs like Microsoft Word or LibreOffice Writer “text editors”, but we need to be a bit more careful when it comes to programming. By default, Microsoft Word uses .docx files to store not only text, but also formatting information about fonts, headings, and so on. This extra information isn’t stored as characters and doesn’t mean anything to tools like head: they expect input files to contain nothing but the letters, digits, and punctuation on a standard computer keyboard. When editing programs, therefore, you must either use a plain text editor, or be careful to save files as plain text.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>What if we want to select lines from an arbitrary file? We could edit middle.sh each time to change the filename, but that would probably take longer than typing the command out again in the shell and executing it with a new file name. Instead, let’s edit middle.sh and make it more versatile:</p>
+<div class="highlight"><pre><span></span>jupyter-user:<span class="nv">$nano</span><span class="w"> </span>middle.sh
+</pre></div>
+<p>Now, within <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">nano</code>, replace the text octane.pdb with the special variable called <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">$1</code>:</p>
+<div class="highlight"><pre><span></span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">15</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-n<span class="w"> </span><span class="m">5</span>
+</pre></div>
+<p>Inside a shell script, <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">$1</code> means ‘the first argument on the command line’. We can now run our script like this:</p>
+<div class="highlight"><pre><span></span>jupyter-user:$<span class="w"> </span>bash<span class="w"> </span>middle.sh<span class="w"> </span>octane.pdb
+ATOM<span class="w">      </span><span class="m">9</span><span class="w">  </span>H<span class="w">           </span><span class="m">1</span><span class="w">      </span>-4.502<span class="w">   </span><span class="m">0</span>.681<span class="w">   </span><span class="m">0</span>.785<span class="w">  </span><span class="m">1</span>.00<span class="w">  </span><span class="m">0</span>.00
+ATOM<span class="w">     </span><span class="m">10</span><span class="w">  </span>H<span class="w">           </span><span class="m">1</span><span class="w">      </span>-5.254<span class="w">  </span>-0.243<span class="w">  </span>-0.537<span class="w">  </span><span class="m">1</span>.00<span class="w">  </span><span class="m">0</span>.00
+ATOM<span class="w">     </span><span class="m">11</span><span class="w">  </span>H<span class="w">           </span><span class="m">1</span><span class="w">      </span>-4.357<span class="w">   </span><span class="m">1</span>.252<span class="w">  </span>-0.895<span class="w">  </span><span class="m">1</span>.00<span class="w">  </span><span class="m">0</span>.00
+ATOM<span class="w">     </span><span class="m">12</span><span class="w">  </span>H<span class="w">           </span><span class="m">1</span><span class="w">      </span>-3.009<span class="w">  </span>-0.741<span class="w">  </span>-1.467<span class="w">  </span><span class="m">1</span>.00<span class="w">  </span><span class="m">0</span>.00
+ATOM<span class="w">     </span><span class="m">13</span><span class="w">  </span>H<span class="w">           </span><span class="m">1</span><span class="w">      </span>-3.172<span class="w">  </span>-1.337<span class="w">   </span><span class="m">0</span>.206<span class="w">  </span><span class="m">1</span>.00<span class="w">  </span><span class="m">0</span>.00
+</pre></div>
+<p>Or on a different file like this:</p>
+<div class="highlight"><pre><span></span>jupyter-user:<span class="nv">$bash</span><span class="w"> </span>middle.sh<span class="w"> </span>pentane.pdb
+ATOM<span class="w">      </span><span class="m">9</span><span class="w">  </span>H<span class="w">           </span><span class="m">1</span><span class="w">       </span><span class="m">1</span>.324<span class="w">   </span><span class="m">0</span>.350<span class="w">  </span>-1.332<span class="w">  </span><span class="m">1</span>.00<span class="w">  </span><span class="m">0</span>.00
+ATOM<span class="w">     </span><span class="m">10</span><span class="w">  </span>H<span class="w">           </span><span class="m">1</span><span class="w">       </span><span class="m">1</span>.271<span class="w">   </span><span class="m">1</span>.378<span class="w">   </span><span class="m">0</span>.122<span class="w">  </span><span class="m">1</span>.00<span class="w">  </span><span class="m">0</span>.00
+ATOM<span class="w">     </span><span class="m">11</span><span class="w">  </span>H<span class="w">           </span><span class="m">1</span><span class="w">      </span>-0.074<span class="w">  </span>-0.384<span class="w">   </span><span class="m">1</span>.288<span class="w">  </span><span class="m">1</span>.00<span class="w">  </span><span class="m">0</span>.00
+ATOM<span class="w">     </span><span class="m">12</span><span class="w">  </span>H<span class="w">           </span><span class="m">1</span><span class="w">      </span>-0.048<span class="w">  </span>-1.362<span class="w">  </span>-0.205<span class="w">  </span><span class="m">1</span>.00<span class="w">  </span><span class="m">0</span>.00
+ATOM<span class="w">     </span><span class="m">13</span><span class="w">  </span>H<span class="w">           </span><span class="m">1</span><span class="w">      </span>-1.183<span class="w">   </span><span class="m">0</span>.500<span class="w">  </span>-1.412<span class="w">  </span><span class="m">1</span>.00<span class="w">  </span><span class="m">0</span>.00
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Information">Information<a class="anchor-link" href="#Information">&#182;</a></h2><p>For the same reason that we put the loop variable inside double-quotes, in case the filename happens to contain any spaces, we surround $1 with double-quotes.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="w3-panel w3-leftbar w3-border-yellow w3-pale-yellow w3-padding-small">
+    <h3 id="-Additional-Arguments%20"><i class="fa fa-pencil-square-o"></i> Additional Arguments
+</h3>
+    <p>Currently, we need to edit middle.sh each time we want to adjust the range of lines that is returned.</p>
+<p>Let’s fix that by configuring our script to instead use three command-line arguments. After the first command-line argument (<code style="background-color:#F7F7F7;border:1px solid #CFCFCF">$1</code>), each additional argument that we provide will be accessible via the special variables <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">$1</code>, <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">$2</code>, <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">$3</code>, which refer to the first, second, third command-line arguments, respectively.</p>
+<p>Knowing this, can you edit middle.sh so that we can use arguments to define the range of lines to be passed to head and tail respectively?</p>
+<p><a href="./07_shell_scripts-soln.html#-Additional-Arguments%20">Solution</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This works, but it may take the next person who reads middle.sh a moment to figure out what it does. We can improve our script by adding some comments at the top:</p>
+<div class="highlight"><pre><span></span>jupyter-user:<span class="nv">$nano</span><span class="w"> </span>middle.sh
+</pre></div>
+<div class="highlight"><pre><span></span><span class="c1"># Select lines from the middle of a file.</span>
+<span class="c1"># Usage: bash middle.sh filename end_line num_lines</span>
+head<span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$2</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$3</span><span class="s2">&quot;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>What if we want to process many files in a single pipeline? For example, if we want to sort our .pdb files by length, we would type:</p>
+<div class="highlight"><pre><span></span>jupyter-user$<span class="w"> </span>wc<span class="w"> </span>-l<span class="w"> </span>*.pdb<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-n
+</pre></div>
+<p>because <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">wc -l</code> lists the number of lines in the files (recall that wc stands for ‘word count’, adding the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">-l</code> option means ‘count lines’ instead) and <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">sort -n</code> sorts things numerically. We could put this in a file, but then it would only ever sort a list of .pdb files in the current directory.</p>
+<p>If we want to be able to get a sorted list of other kinds of files, we need a way to get all those names into the script. We can’t use <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">$1</code>, <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">$2</code>, and so on because we don’t know how many files there are. Instead, we use the special variable <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">$@</code>, which means, ‘All of the command-line arguments to the shell script’. We also should put <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">$@</code> inside double-quotes to handle the case of arguments containing spaces (<code style="background-color:#F7F7F7;border:1px solid #CFCFCF">$@</code> is special syntax and is equivalent to "$1" "$2" …).</p>
+<p>Here's an example:</p>
+<div class="highlight"><pre><span></span>jupyter-user:<span class="nv">$nano</span><span class="w"> </span>sorted.sh
+</pre></div>
+<div class="highlight"><pre><span></span><span class="c1"># Sort files by their length.</span>
+<span class="c1"># Usage: bash sorted.sh one_or_more_filenames</span>
+wc<span class="w"> </span>-l<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-n
+</pre></div>
+<p>Now lets try running it:</p>
+<div class="highlight"><pre><span></span>jupyter-user$<span class="w"> </span>bash<span class="w"> </span>sorted.sh<span class="w"> </span>*.pdb<span class="w"> </span>../creatures/*.dat
+<span class="m">9</span><span class="w"> </span>methane.pdb
+<span class="m">12</span><span class="w"> </span>ethane.pdb
+<span class="m">15</span><span class="w"> </span>propane.pdb
+<span class="m">20</span><span class="w"> </span>cubane.pdb
+<span class="m">21</span><span class="w"> </span>pentane.pdb
+<span class="m">30</span><span class="w"> </span>octane.pdb
+<span class="m">163</span><span class="w"> </span>../creatures/basilisk.dat
+<span class="m">163</span><span class="w"> </span>../creatures/minotaur.dat
+<span class="m">163</span><span class="w"> </span>../creatures/unicorn.dat
+<span class="m">596</span><span class="w"> </span>total
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="w3-panel w3-leftbar w3-border-blue w3-pale-blue w3-padding-small">
+    <h3 id="-History%20"><i class="fa fa-info-circle"></i> History
+</h3>
+    <p>Suppose we have just run a series of commands that did something useful — for example, that created a graph we’d like to use in a paper. We’d like to be able to re-create the graph later if we need to, so we want to save the commands in a file. Instead of typing them in again (and potentially getting them wrong). We can use the <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">history</code> command to achieve this. The <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">history</code> command prints to the terminal the last commands you have run.</p>
+<p>Try it now.</p>
+<div class="highlight"><pre><span></span>jupyter-user:<span class="nv">$history</span>
+</pre></div>
+<p>Say our last few commands did something useful we wanted to save. Lets look at the last 6 commands</p>
+<div class="highlight"><pre><span></span>jupyter-user:<span class="nv">$history</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-n<span class="w"> </span><span class="m">5</span>
+<span class="m">297</span><span class="w"> </span>bash<span class="w"> </span>goostats.sh<span class="w"> </span>NENE01729B.txt<span class="w"> </span>stats-NENE01729B.txt
+<span class="m">298</span><span class="w"> </span>bash<span class="w"> </span>goodiff.sh<span class="w"> </span>stats-NENE01729B.txt<span class="w"> </span>/data/validated/01729.txt<span class="w"> </span>&gt;<span class="w"> </span><span class="m">01729</span>-differences.txt
+<span class="m">299</span><span class="w"> </span>cut<span class="w"> </span>-d<span class="w"> </span><span class="s1">&#39;,&#39;</span><span class="w"> </span>-f<span class="w"> </span><span class="m">2</span>-3<span class="w"> </span><span class="m">01729</span>-differences.txt<span class="w"> </span>&gt;<span class="w"> </span><span class="m">01729</span>-time-series.txt
+<span class="m">300</span><span class="w"> </span>ygraph<span class="w"> </span>--format<span class="w"> </span>scatter<span class="w"> </span>--color<span class="w"> </span>bw<span class="w"> </span>--borders<span class="w"> </span>none<span class="w"> </span><span class="m">01729</span>-time-series.txt<span class="w"> </span>figure-3.png
+<span class="m">301</span><span class="w"> </span><span class="nb">history</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-n<span class="w"> </span><span class="m">5</span>
+</pre></div>
+<p>We can then redirect this to a file, and with a small amount of work to remove the serial numbers and the last line we have an accurate record of the commands we used.</p>
+<div class="highlight"><pre><span></span>jupyter-user:$<span class="w"> </span><span class="nb">history</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-n<span class="w"> </span><span class="m">5</span><span class="w"> </span>&gt;<span class="w"> </span>recent.sh
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Nelle's-Pipeline:-Creating-a-Script">Nelle's Pipeline: Creating a Script<a class="anchor-link" href="#Nelle's-Pipeline:-Creating-a-Script">&#182;</a></h2><p>Nelle’s supervisor insisted that all her analytics must be reproducible. The easiest way to capture all the steps is in a script.</p>
+<p>First we return to Nelle’s project directory:</p>
+<div class="highlight"><pre><span></span>jupyter-user:<span class="nv">$cd</span><span class="w"> </span>../../north-pacific-gyre/
+</pre></div>
+<p>She creates a file using <code style="background-color:#F7F7F7;border:1px solid #CFCFCF">nano</code> …</p>
+<div class="highlight"><pre><span></span>jupyter-user:<span class="nv">$nano</span><span class="w"> </span><span class="k">do</span>-stats.sh
+</pre></div>
+<p>containing the followingL</p>
+<div class="highlight"><pre><span></span><span class="c1"># Calculate stats for data files.</span>
+<span class="k">for</span><span class="w"> </span>datafile<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
+<span class="k">do</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$datafile</span>
+<span class="w">    </span>bash<span class="w"> </span>goostats.sh<span class="w"> </span><span class="nv">$datafile</span><span class="w"> </span>stats-<span class="nv">$datafile</span>
+<span class="k">done</span>
+</pre></div>
+<p>She saves this in a file called do-stats.sh so that she can now re-do the first stage of her analysis by typing:</p>
+<div class="highlight"><pre><span></span>jupyter-user:<span class="nv">$bash</span><span class="w"> </span><span class="k">do</span>-stats.sh<span class="w"> </span>NENE*A.txt<span class="w"> </span>NENE*B.txt
+</pre></div>
+<p>She can also do this:</p>
+<div class="highlight"><pre><span></span>jupyter-user:$<span class="w"> </span>bash<span class="w"> </span><span class="k">do</span>-stats.sh<span class="w"> </span>NENE*A.txt<span class="w"> </span>NENE*B.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l
+</pre></div>
+<p>so that the output is just the number of files processed rather than the names of the files that were processed.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="w3-panel w3-leftbar w3-border-yellow w3-pale-yellow w3-padding-small">
+    <h3 id="-Variables-in-shell-scripts%20"><i class="fa fa-pencil-square-o"></i> Variables in shell scripts
+</h3>
+    <p>In the proteins directory, imagine you have a shell script called script.sh containing the following commands:</p>
+<div class="highlight"><pre><span></span>head<span class="w"> </span>-n<span class="w"> </span><span class="nv">$2</span><span class="w"> </span><span class="nv">$1</span>
+tail<span class="w"> </span>-n<span class="w"> </span><span class="nv">$3</span><span class="w"> </span><span class="nv">$1</span>
+</pre></div>
+<p>While you are in the proteins directory, you type the following command:</p>
+<div class="highlight"><pre><span></span>bash<span class="w"> </span>script.sh<span class="w"> </span><span class="s1">&#39;&ast;.pdb&#39;</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span>
+</pre></div>
+<p>Which of the following outputs would you expect to see?</p>
+<ol>
+<li>All of the lines between the first and the last lines of each file ending in .pdb in the proteins directory</li>
+<li>The first and the last line of each file ending in .pdb in the proteins directory</li>
+<li>The first and the last line of each file in the proteins directory</li>
+<li>An error because of the quotes around &ast;.pdb</li>
+</ol>
+<p><a href="./07_shell_scripts-soln.html#-Variables-in-shell-scripts%20">Solution</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="w3-panel w3-leftbar w3-border-yellow w3-pale-yellow w3-padding-small">
+    <h3 id="-Longest-file%20"><i class="fa fa-pencil-square-o"></i> Longest file
+</h3>
+    <p>Write a shell script called longest.sh that takes the name of a directory and a filename extension as its arguments, and prints out the name of the file with the most lines in that directory with that extension. For example:</p>
+<div class="highlight"><pre><span></span>jupyter-user:<span class="nv">$bash</span><span class="w"> </span>longest.sh<span class="w"> </span>shell-lesson-data/exercise-data/proteins<span class="w"> </span>pdb
+</pre></div>
+<p>would print the name of the .pdb file in shell-lesson-data/exercise-data/proteins that has the most lines.</p>
+<p>Feel free to test your script on another directory e.g.</p>
+<div class="highlight"><pre><span></span>jupyter-user:$<span class="w"> </span>bash<span class="w"> </span>longest.sh<span class="w"> </span>shell-lesson-data/exercise-data/writing<span class="w"> </span>txt
+</pre></div>
+<p><a href="./07_shell_scripts-soln.html#-Longest-file%20">Solution</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Key-points">Key points<a class="anchor-link" href="#Key-points">&#182;</a></h2><ul>
+<li>Save commands in files (usually called shell scripts) for re-use.</li>
+<li>bash [filename] runs the commands saved in a file.</li>
+<li>$@ refers to all of a shell script’s command-line arguments.</li>
+<li>$1, $2, etc., refer to the first command-line argument, the second command-line argument, etc.</li>
+<li>Place variables in quotes if the values might have spaces in them.</li>
+</ul>
 
 </div>
 </div>
@@ -13183,6 +13379,17 @@ div#notebook {
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="w3-bar w3-blue-grey">
+<a href="./06_loops.html" class="w3-left-align w3-bar-item w3-button w3-mobile" style="width:33%"><h2><i class="fa fa-angle-double-left"></i> Previous</h2></a>
+<a href="./00_schedule.html" class="w3-bar-item w3-button w3-center w3-mobile" style="width:33%"><h2>Schedule</h2></a>
+<a href="./00_schedule.html" class="w3-right-align w3-bar-item w3-button w3-right w3-mobile" style="width:33%"><h2>Next <i class="fa fa-angle-double-right"></i></h2></a>
+</div>
 </div>
 </div>
 </div>
